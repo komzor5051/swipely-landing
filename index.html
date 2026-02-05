@@ -1,0 +1,2150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swipely — AI-генератор каруселей для Instagram</title>
+    <meta name="description" content="Превращай идеи в дизайнерские карусели за секунды. Просто отправь текст или голосовое — получи готовый контент для Instagram и LinkedIn.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23FF6B6B'/><stop offset='100%25' style='stop-color:%23EE5A6F'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23grad)'/><path d='M10 12h12M10 16h12M10 20h8' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
+
+    <style>
+        :root {
+            --primary: #0A84FF;
+            --primary-dark: #0066CC;
+            --primary-light: #3D9FFF;
+            --accent: #FF6B6B;
+            --accent-dark: #EE5A6F;
+            --teal: #1E3A5F;
+            --teal-light: #4A6B8A;
+            --charcoal: #1A1A2E;
+            --charcoal-light: #2D2D44;
+            --warm-white: #F8FAFC;
+            --cream: #E8F4FC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: #FFFFFF;
+            color: var(--charcoal);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated gradient background */
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(10, 132, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 60% at 80% 20%, rgba(10, 132, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 80% at 60% 80%, rgba(61, 159, 255, 0.06) 0%, transparent 50%),
+                #FFFFFF;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(3deg); }
+        }
+
+        /* Floating particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--charcoal);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(10, 132, 255, 0.3);
+        }
+
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: rgba(26, 26, 46, 0.7);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-link:hover {
+            color: var(--charcoal);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 24px rgba(10, 132, 255, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(10, 132, 255, 0.5);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-secondary {
+            background: rgba(26, 26, 46, 0.05);
+            color: var(--charcoal);
+            border: 1px solid rgba(26, 26, 46, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(26, 26, 46, 0.1);
+            border-color: rgba(26, 26, 46, 0.25);
+        }
+
+        .btn-large {
+            padding: 1.125rem 2.5rem;
+            font-size: 1.125rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(10, 132, 255, 0.15);
+            border: 1px solid rgba(10, 132, 255, 0.3);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--primary-light);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.1s backwards;
+        }
+
+        .hero-badge::before {
+            content: '';
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(26, 26, 46, 0.7);
+            margin-bottom: 2rem;
+            max-width: 520px;
+            animation: fadeInUp 1s ease-out 0.3s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(26, 26, 46, 0.1);
+            animation: fadeInUp 1s ease-out 0.5s backwards;
+        }
+
+        .stat {
+            text-align: left;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: rgba(26, 26, 46, 0.5);
+            margin-top: 0.25rem;
+        }
+
+        /* Hero Visual - Carousel Stack */
+        .hero-visual {
+            position: relative;
+            perspective: 1000px;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .carousel-stack {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-card {
+            position: absolute;
+            width: 280px;
+            height: 350px;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.5);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .carousel-card:nth-child(1) {
+            transform: rotate(-12deg) translateX(-60px);
+            z-index: 1;
+        }
+
+        .carousel-card:nth-child(2) {
+            transform: rotate(0deg) translateY(-20px);
+            z-index: 2;
+        }
+
+        .carousel-card:nth-child(3) {
+            transform: rotate(12deg) translateX(60px);
+            z-index: 1;
+        }
+
+        .carousel-stack:hover .carousel-card:nth-child(1) {
+            transform: rotate(-18deg) translateX(-100px) translateY(20px);
+        }
+
+        .carousel-stack:hover .carousel-card:nth-child(2) {
+            transform: rotate(0deg) translateY(-40px) scale(1.05);
+            z-index: 3;
+        }
+
+        .carousel-stack:hover .carousel-card:nth-child(3) {
+            transform: rotate(18deg) translateX(100px) translateY(20px);
+        }
+
+        /* Grid Multi Style Slide */
+        .slide-grid-multi {
+            background: #FAFAFA;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .slide-grid-multi::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .slide-deco {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .slide-deco-line {
+            width: 60px;
+            height: 6px;
+            background: #D4F542;
+            border-radius: 3px;
+            transform: rotate(-25deg);
+        }
+
+        .slide-deco-line:nth-child(2) { opacity: 0.8; }
+        .slide-deco-line:nth-child(3) { opacity: 0.6; }
+
+        .slide-content {
+            position: relative;
+            z-index: 1;
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .slide-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            color: #888;
+            margin-bottom: 0.75rem;
+        }
+
+        .slide-title {
+            font-family: 'Inter', 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: #0A0A0A;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .slide-title .highlight {
+            display: inline;
+            background: #D4F542;
+            padding: 2px 8px;
+            position: relative;
+        }
+
+        .slide-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: #60A5FA;
+            border-radius: 1px;
+        }
+
+        .slide-title .highlight-pink {
+            background: #F9A8D4;
+        }
+
+        .slide-title .highlight-pink::after {
+            display: none;
+        }
+
+        .slide-text {
+            font-family: 'Inter', 'Outfit', sans-serif;
+            font-size: 0.7rem;
+            color: #888;
+            line-height: 1.5;
+        }
+
+        .slide-footer {
+            position: absolute;
+            bottom: 12px;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .slide-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #F9A8D4, #D4F542);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            color: #0A0A0A;
+        }
+
+        .slide-cta {
+            font-size: 0.55rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(10, 132, 255, 0.1);
+            border: 1px solid rgba(10, 132, 255, 0.2);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: rgba(26, 26, 46, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            position: relative;
+        }
+
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 16.66%;
+            right: 16.66%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(10, 132, 255, 0.3) 20%,
+                rgba(10, 132, 255, 0.3) 80%,
+                transparent
+            );
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            border-radius: 24px;
+            background: #FFFFFF;
+            border: 1px solid rgba(26, 26, 46, 0.08);
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .step:hover {
+            background: #FFFFFF;
+            transform: translateY(-8px);
+            border-color: rgba(10, 132, 255, 0.3);
+            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.1);
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 8px 32px rgba(10, 132, 255, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-desc {
+            font-size: 0.95rem;
+            color: rgba(26, 26, 46, 0.6);
+            line-height: 1.6;
+        }
+
+        .step-number {
+            color: white;
+        }
+
+        /* Demo Section */
+        .demo-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, transparent, rgba(10, 132, 255, 0.03), transparent);
+        }
+
+        .demo-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border: 1px solid rgba(26, 26, 46, 0.08);
+            border-radius: 32px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .demo-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(10, 132, 255, 0.5), transparent);
+        }
+
+        .demo-chat {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            animation: slideIn 0.5s ease-out backwards;
+        }
+
+        .chat-message:nth-child(1) { animation-delay: 0.1s; }
+        .chat-message:nth-child(2) { animation-delay: 0.3s; }
+        .chat-message:nth-child(3) { animation-delay: 0.5s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .chat-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: white;
+        }
+
+        .chat-message.user .chat-avatar {
+            background: var(--teal);
+            color: white;
+        }
+
+        .chat-bubble {
+            max-width: 70%;
+            padding: 1rem 1.25rem;
+            border-radius: 18px;
+            background: rgba(10, 132, 255, 0.08);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .chat-message.user .chat-bubble {
+            background: rgba(26, 26, 46, 0.05);
+            border: 1px solid rgba(26, 26, 46, 0.1);
+        }
+
+        .demo-result {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .demo-slide {
+            flex-shrink: 0;
+            width: 200px;
+            height: 250px;
+            border-radius: 16px;
+            scroll-snap-align: start;
+            transition: transform 0.3s ease;
+        }
+
+        .demo-slide:hover {
+            transform: scale(1.05);
+        }
+
+        .demo-slide {
+            background: #FAFAFA;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+            background-size: 15px 15px;
+        }
+
+        .demo-slide-deco {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .demo-slide-deco span {
+            width: 40px;
+            height: 4px;
+            background: #D4F542;
+            border-radius: 2px;
+            transform: rotate(-25deg);
+        }
+
+        .demo-slide-deco span:nth-child(2) { opacity: 0.7; }
+        .demo-slide-deco span:nth-child(3) { opacity: 0.5; }
+
+        .demo-slide-content {
+            position: relative;
+            z-index: 1;
+            padding: 1.25rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .demo-slide-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            color: #888;
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-slide-title {
+            font-family: 'Inter', 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #0A0A0A;
+            margin-bottom: 0.4rem;
+            line-height: 1.15;
+        }
+
+        .demo-slide-title .hl {
+            background: #D4F542;
+            padding: 1px 6px;
+            position: relative;
+        }
+
+        .demo-slide-title .hl::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: #60A5FA;
+        }
+
+        .demo-slide-title .hl-pink {
+            background: #F9A8D4;
+        }
+
+        .demo-slide-title .hl-pink::after {
+            display: none;
+        }
+
+        .demo-slide-text {
+            font-size: 0.65rem;
+            color: #888;
+            line-height: 1.4;
+        }
+
+        .demo-slide-footer {
+            position: absolute;
+            bottom: 10px;
+            left: 12px;
+            right: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .demo-slide-avatar {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #F9A8D4, #D4F542);
+            font-size: 8px;
+            font-weight: 800;
+            color: #0A0A0A;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 8rem 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            padding: 2.5rem;
+            border-radius: 24px;
+            background: #FFFFFF;
+            border: 1px solid rgba(26, 26, 46, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            background: #FFFFFF;
+            transform: translateY(-4px);
+            border-color: rgba(10, 132, 255, 0.3);
+            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.1);
+        }
+
+        .benefit-card:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(61, 159, 255, 0.08));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .benefit-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .benefit-desc {
+            color: rgba(26, 26, 46, 0.6);
+            line-height: 1.6;
+        }
+
+        /* Templates Section */
+        .templates {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, transparent, rgba(10, 132, 255, 0.03), transparent);
+        }
+
+        .templates-carousel {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+
+        .templates-carousel::-webkit-scrollbar {
+            display: none;
+        }
+
+        .template-card {
+            flex-shrink: 0;
+            width: 260px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #FFFFFF;
+            border: 1px solid rgba(26, 26, 46, 0.08);
+            scroll-snap-align: start;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .template-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(10, 132, 255, 0.4);
+            box-shadow: 0 20px 60px -20px rgba(10, 132, 255, 0.2);
+        }
+
+        .template-preview {
+            height: 180px;
+            position: relative;
+        }
+
+        /* Template preview backgrounds based on actual template colors */
+        .template-preview.notebook { background: linear-gradient(135deg, #F5E6D3, #E8D4B8); }
+        .template-preview.aurora { background: linear-gradient(135deg, #12121A, #7F5AF0); }
+        .template-preview.terminal { background: #0A0A0A; position: relative; }
+        .template-preview.terminal::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(51,255,0,0.03) 0px, rgba(51,255,0,0.03) 1px, transparent 1px, transparent 2px); }
+        .template-preview.editorial { background: #F8F6F0; border-left: 4px solid #DC2626; }
+        .template-preview.luxe { background: linear-gradient(135deg, #0C0C0C, #1a1a1a); }
+        .template-preview.backspace { background: #F0EFED; }
+        .template-preview.star_highlight { background: #FFFFFF; }
+        .template-preview.purple_accent { background: linear-gradient(135deg, #E8E6F2, #D4D0E8); }
+        .template-preview.quote_doodle { background: #F5F3EE; }
+        .template-preview.speech_bubble { background: #F8F8F8; }
+        .template-preview.grid_multi { background: #FAFAFA; position: relative; }
+        .template-preview.grid_multi::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 20px 20px; }
+        .template-preview.receipt { background: #E8E8E8; }
+        .template-preview.lime_checklist { background: #D4F542; }
+        .template-preview.app_list { background: linear-gradient(135deg, #E8E6F2, #D4D0E8); }
+        .template-preview.paper_image { background: #F5F3EE; }
+
+        /* Accent decorations for previews */
+        .template-accent {
+            position: absolute;
+            border-radius: 4px;
+        }
+        .template-preview.star_highlight .template-accent { background: #FFE500; width: 60%; height: 12px; bottom: 40px; left: 20px; }
+        .template-preview.purple_accent .template-accent { background: #9B8FD9; width: 50%; height: 10px; bottom: 35px; left: 20px; border-radius: 20px; }
+        .template-preview.quote_doodle .template-accent { background: #4ADE80; width: 40px; height: 40px; top: 20px; left: 20px; border-radius: 50%; }
+        .template-preview.speech_bubble .template-accent { background: #FF6B35; width: 70%; height: 50px; bottom: 30px; left: 15%; border-radius: 20px; }
+        .template-preview.grid_multi .template-accent { background: #D4F542; width: 50px; height: 8px; top: 20px; right: 20px; transform: rotate(-25deg); }
+        .template-preview.grid_multi .template-accent-2 { background: #F9A8D4; width: 60%; height: 14px; bottom: 50px; left: 20px; border-radius: 0; }
+        .template-preview.receipt .template-accent { background: #FFFEF5; width: 70%; height: 60%; top: 20%; left: 15%; border-radius: 0; }
+        .template-preview.lime_checklist .template-accent { background: #F5F0E6; width: 75%; height: 55%; bottom: 15%; left: 12.5%; border-radius: 12px; }
+        .template-preview.app_list .template-accent { background: #3B82F6; width: 30px; height: 30px; top: 25px; left: 25px; border-radius: 8px; }
+        .template-preview.paper_image .template-accent { background: #FF5722; width: 50%; height: 10px; bottom: 40px; left: 25%; border-radius: 0; }
+        .template-preview.luxe .template-accent { background: linear-gradient(135deg, #D4AF37, #F5D67B); width: 60%; height: 3px; bottom: 50px; left: 20%; }
+        .template-preview.backspace .template-accent { background: #0A0A0A; font-size: 32px; font-weight: 900; color: #0A0A0A; width: auto; height: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .template-preview.aurora .template-accent { background: linear-gradient(135deg, #72F2EB, #2CB67D); width: 80px; height: 80px; border-radius: 50%; bottom: 20px; right: 20px; opacity: 0.7; filter: blur(10px); }
+        .template-preview.terminal .template-accent { color: #33FF00; font-family: monospace; font-size: 11px; position: absolute; top: 20px; left: 15px; background: none; }
+
+        .template-preview-content {
+            display: none;
+        }
+
+        .template-info {
+            padding: 1.25rem;
+        }
+
+        .template-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .template-desc {
+            font-size: 0.85rem;
+            color: rgba(26, 26, 46, 0.5);
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 8rem 2rem;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 4rem auto 0;
+        }
+
+        .pricing-card {
+            padding: 2.5rem;
+            border-radius: 24px;
+            background: #FFFFFF;
+            border: 1px solid rgba(26, 26, 46, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.08), rgba(61, 159, 255, 0.03));
+            border-color: rgba(10, 132, 255, 0.3);
+            transform: scale(1.05);
+            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.15);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Популярный';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.1);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-4px);
+        }
+
+        .pricing-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-desc {
+            font-size: 0.9rem;
+            color: rgba(26, 26, 46, 0.5);
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-price {
+            margin-bottom: 1.5rem;
+        }
+
+        .price-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .price-period {
+            color: rgba(26, 26, 46, 0.5);
+            font-size: 0.9rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .pricing-features li::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A84FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem;
+            background: linear-gradient(135deg, rgba(10, 132, 255, 0.1), rgba(30, 58, 95, 0.15));
+            border: 1px solid rgba(10, 132, 255, 0.2);
+            border-radius: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(10, 132, 255, 0.1) 0%, transparent 50%);
+            animation: rotateCta 20s linear infinite;
+        }
+
+        @keyframes rotateCta {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-title {
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.125rem;
+            color: rgba(26, 26, 46, 0.7);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(26, 26, 46, 0.08);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: rgba(26, 26, 46, 0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(26, 26, 46, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(26, 26, 46, 0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Telegram button floating */
+        .telegram-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 99;
+        }
+
+        .telegram-float a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, #0088cc, #00a0e9);
+            color: white;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            box-shadow: 0 8px 32px rgba(0, 136, 204, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .telegram-float a:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 136, 204, 0.5);
+        }
+
+        .telegram-float svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .hero-visual {
+                order: 0;
+                margin-bottom: 2rem;
+            }
+
+            .carousel-stack {
+                height: 350px;
+            }
+
+            .carousel-card {
+                width: 200px;
+                height: 260px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-subtitle {
+                margin: 0 auto 2rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .steps::before {
+                display: none;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-4px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .demo-container {
+                padding: 1.5rem;
+            }
+
+            .chat-bubble {
+                max-width: 85%;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .telegram-float {
+                bottom: 1rem;
+                right: 1rem;
+            }
+
+            .telegram-float span {
+                display: none;
+            }
+
+            .telegram-float a {
+                padding: 1rem;
+            }
+        }
+
+        /* Smooth scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.5;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(10px); }
+        }
+
+        .scroll-indicator span {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="gradient-bg"></div>
+
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav id="nav">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <img src="logo.png" alt="Swipely">
+            </div>
+            <span class="logo-text">Swipely</span>
+        </a>
+        <div class="nav-cta">
+            <a href="#how" class="nav-link">Как работает</a>
+            <a href="#templates" class="nav-link">Шаблоны</a>
+            <a href="#pricing" class="nav-link">Цены</a>
+            <a href="https://t.me/swipelybot" target="_blank" class="btn btn-primary">
+                Попробовать бесплатно
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">AI-генератор каруселей</div>
+                <h1>Превращаю мысли в <span>дизайнерские карусели</span> за секунды</h1>
+                <p class="hero-subtitle">
+                    Отправь текст или голосовое в Telegram — получи готовую карусель для Instagram и LinkedIn. Без Canva, дизайнеров и головной боли.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://t.me/swipelybot" target="_blank" class="btn btn-primary btn-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                        </svg>
+                        Открыть в Telegram
+                    </a>
+                    <a href="#demo" class="btn btn-secondary btn-large">
+                        Смотреть демо
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-value">10K+</div>
+                        <div class="stat-label">каруселей создано</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">15</div>
+                        <div class="stat-label">стилей дизайна</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">30сек</div>
+                        <div class="stat-label">среднее время</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="carousel-stack">
+                    <div class="carousel-card">
+                        <div class="slide-grid-multi">
+                            <div class="slide-deco">
+                                <div class="slide-deco-line"></div>
+                                <div class="slide-deco-line"></div>
+                                <div class="slide-deco-line"></div>
+                            </div>
+                            <div class="slide-content">
+                                <div class="slide-number">01 / 05</div>
+                                <div class="slide-title"><span class="highlight-pink">5 привычек</span> успешных людей</div>
+                                <div class="slide-text">Свайпай, чтобы узнать секреты продуктивности →</div>
+                            </div>
+                            <div class="slide-footer">
+                                <div class="slide-avatar">S</div>
+                                <div class="slide-cta">Follow for more</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="slide-grid-multi">
+                            <div class="slide-deco">
+                                <div class="slide-deco-line"></div>
+                                <div class="slide-deco-line"></div>
+                                <div class="slide-deco-line"></div>
+                            </div>
+                            <div class="slide-content">
+                                <div class="slide-number">02 / 05</div>
+                                <div class="slide-title">Просыпайся <span class="highlight">в 5:00</span></div>
+                                <div class="slide-text">Утренние часы — самое продуктивное время для глубокой работы</div>
+                            </div>
+                            <div class="slide-footer">
+                                <div class="slide-avatar">S</div>
+                                <div class="slide-cta">Follow for more</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-card">
+                        <div class="slide-grid-multi">
+                            <div class="slide-deco">
+                                <div class="slide-deco-line"></div>
+                                <div class="slide-deco-line"></div>
+                                <div class="slide-deco-line"></div>
+                            </div>
+                            <div class="slide-content">
+                                <div class="slide-number">03 / 05</div>
+                                <div class="slide-title">Читай <span class="highlight">30 минут</span> в день</div>
+                                <div class="slide-text">Книги расширяют кругозор и дают новые идеи каждый день</div>
+                            </div>
+                            <div class="slide-footer">
+                                <div class="slide-avatar">S</div>
+                                <div class="slide-cta">Follow for more</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Листай вниз</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Как это работает</div>
+                <h2 class="section-title">От идеи до публикации<br>за 3 простых шага</h2>
+                <p class="section-subtitle">
+                    Никаких сложных редакторов. Просто отправь мысль — получи готовый контент.
+                </p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Отправь идею</h3>
+                    <p class="step-desc">Напиши текст или надикуй голосовое сообщение. AI поймёт твой стиль и извлечёт ключевые смыслы.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Выбери стиль</h3>
+                    <p class="step-desc">15 дизайн-шаблонов: от минималистичного Terminal до яркого Lime Checklist. Найди свой вайб.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Скачай и публикуй</h3>
+                    <p class="step-desc">Готовая карусель прилетит в чат. Скачай, опубликуй и собирай реакции.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="demo-container">
+            <div class="section-header" style="margin-bottom: 2rem;">
+                <div class="section-tag">Живой пример</div>
+                <h2 class="section-title" style="font-size: 1.75rem;">Так выглядит работа с ботом</h2>
+            </div>
+            <div class="demo-chat">
+                <div class="chat-message user">
+                    <div class="chat-avatar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
+                    <div class="chat-bubble">Напиши карусель про 5 привычек продуктивных людей, которые помогут работать эффективнее</div>
+                </div>
+                <div class="chat-message">
+                    <div class="chat-avatar" style="padding: 4px;">
+                        <img src="logo.png" alt="Swipely" style="width: 100%; height: 100%; border-radius: 8px;">
+                    </div>
+                    <div class="chat-bubble">Принял! Выбери количество слайдов и стиль дизайна. Генерирую контент...</div>
+                </div>
+                <div class="chat-message">
+                    <div class="chat-avatar" style="padding: 4px;">
+                        <img src="logo.png" alt="Swipely" style="width: 100%; height: 100%; border-radius: 8px;">
+                    </div>
+                    <div class="chat-bubble">Твоя карусель готова! Скачай и публикуй:</div>
+                </div>
+            </div>
+            <div class="demo-result">
+                <div class="demo-slide">
+                    <div class="demo-slide-deco"><span></span><span></span><span></span></div>
+                    <div class="demo-slide-content">
+                        <div class="demo-slide-num">01 / 05</div>
+                        <div class="demo-slide-title"><span class="hl hl-pink">5 привычек</span> продуктивных людей</div>
+                        <div class="demo-slide-text">Свайпай →</div>
+                    </div>
+                    <div class="demo-slide-footer">
+                        <div class="demo-slide-avatar">S</div>
+                    </div>
+                </div>
+                <div class="demo-slide">
+                    <div class="demo-slide-deco"><span></span><span></span><span></span></div>
+                    <div class="demo-slide-content">
+                        <div class="demo-slide-num">02 / 05</div>
+                        <div class="demo-slide-title">Утренняя <span class="hl">рутина</span></div>
+                        <div class="demo-slide-text">Начинай день с 30 минут глубокой работы без отвлечений</div>
+                    </div>
+                    <div class="demo-slide-footer">
+                        <div class="demo-slide-avatar">S</div>
+                    </div>
+                </div>
+                <div class="demo-slide">
+                    <div class="demo-slide-deco"><span></span><span></span><span></span></div>
+                    <div class="demo-slide-content">
+                        <div class="demo-slide-num">03 / 05</div>
+                        <div class="demo-slide-title">Техника <span class="hl">Pomodoro</span></div>
+                        <div class="demo-slide-text">25 минут фокуса, 5 минут отдыха. Повторяй циклами.</div>
+                    </div>
+                    <div class="demo-slide-footer">
+                        <div class="demo-slide-avatar">S</div>
+                    </div>
+                </div>
+                <div class="demo-slide">
+                    <div class="demo-slide-deco"><span></span><span></span><span></span></div>
+                    <div class="demo-slide-content">
+                        <div class="demo-slide-num">04 / 05</div>
+                        <div class="demo-slide-title">Планируй <span class="hl">вечером</span></div>
+                        <div class="demo-slide-text">Составь план на завтра перед сном — утром сразу в бой</div>
+                    </div>
+                    <div class="demo-slide-footer">
+                        <div class="demo-slide-avatar">S</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Почему Swipely</div>
+                <h2 class="section-title">Забудь про часы в Canva</h2>
+                <p class="section-subtitle">
+                    Пока другие мучаются с дизайном, ты уже публикуешь контент
+                </p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">30 секунд вместо часов</h3>
+                    <p class="benefit-desc">AI пишет тексты, подбирает композицию и генерирует готовые слайды. Ты только даёшь идею.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="6"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Твой стиль, не шаблон</h3>
+                    <p class="benefit-desc">Бот анализирует твой тон голоса и создаёт контент, который звучит как ты, а не как робот.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Голос → Карусель</h3>
+                    <p class="benefit-desc">Просто надикуй мысль голосовым сообщением. Не нужно печатать — AI всё расшифрует и оформит.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Режим с твоим фото</h3>
+                    <p class="benefit-desc">Загрузи своё фото — AI создаст уникальные изображения с тобой в разных сценах для каждого слайда.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Templates Section -->
+    <section class="templates" id="templates">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">15 стилей дизайна</div>
+                <h2 class="section-title">Шаблоны на любой вкус</h2>
+                <p class="section-subtitle">
+                    От тёмного минимализма до ярких градиентов. Найди свой стиль.
+                </p>
+            </div>
+            <div class="templates-carousel">
+                <!-- Grid Multi -->
+                <div class="template-card">
+                    <div class="template-preview grid_multi">
+                        <div class="template-accent"></div>
+                        <div class="template-accent template-accent-2"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Grid Multi</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Grid Multi</div>
+                        <div class="template-desc">Сетка, цветные акценты</div>
+                    </div>
+                </div>
+                <!-- Notebook -->
+                <div class="template-card">
+                    <div class="template-preview notebook">
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Notebook</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Notebook Sketch</div>
+                        <div class="template-desc">Крафтовый, личный</div>
+                    </div>
+                </div>
+                <!-- Aurora -->
+                <div class="template-card">
+                    <div class="template-preview aurora">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Aurora</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Aurora</div>
+                        <div class="template-desc">Мягкие градиенты</div>
+                    </div>
+                </div>
+                <!-- Terminal -->
+                <div class="template-card">
+                    <div class="template-preview terminal">
+                        <div class="template-accent">> run swipely_</div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title" style="color: #33FF00;">Terminal</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Terminal</div>
+                        <div class="template-desc">Для IT-аудитории</div>
+                    </div>
+                </div>
+                <!-- Luxe -->
+                <div class="template-card">
+                    <div class="template-preview luxe">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title" style="color: #D4AF37;">Luxe</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Luxe</div>
+                        <div class="template-desc">Премиум, золото</div>
+                    </div>
+                </div>
+                <!-- Editorial -->
+                <div class="template-card">
+                    <div class="template-preview editorial">
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Editorial</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Editorial</div>
+                        <div class="template-desc">Журнальный стиль</div>
+                    </div>
+                </div>
+                <!-- Backspace -->
+                <div class="template-card">
+                    <div class="template-preview backspace">
+                        <div class="template-preview-content">
+                            <div class="template-preview-title" style="font-weight: 900; font-size: 1.3rem;">Backspace</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Backspace</div>
+                        <div class="template-desc">Деловой, минимализм</div>
+                    </div>
+                </div>
+                <!-- Star Highlight -->
+                <div class="template-card">
+                    <div class="template-preview star_highlight">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Star Highlight</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Star Highlight</div>
+                        <div class="template-desc">Жёлтые акценты</div>
+                    </div>
+                </div>
+                <!-- Purple Accent -->
+                <div class="template-card">
+                    <div class="template-preview purple_accent">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Purple Accent</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Purple Accent</div>
+                        <div class="template-desc">Лавандовый, брендинг</div>
+                    </div>
+                </div>
+                <!-- Quote Doodle -->
+                <div class="template-card">
+                    <div class="template-preview quote_doodle">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Quote Doodle</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Quote Doodle</div>
+                        <div class="template-desc">Для цитат и мудрости</div>
+                    </div>
+                </div>
+                <!-- Speech Bubble -->
+                <div class="template-card">
+                    <div class="template-preview speech_bubble">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Speech Bubble</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Speech Bubble</div>
+                        <div class="template-desc">Цитаты с автором</div>
+                    </div>
+                </div>
+                <!-- Receipt -->
+                <div class="template-card">
+                    <div class="template-preview receipt">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Receipt</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Receipt</div>
+                        <div class="template-desc">Стиль чека, манифесты</div>
+                    </div>
+                </div>
+                <!-- Lime Checklist -->
+                <div class="template-card">
+                    <div class="template-preview lime_checklist">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Lime Checklist</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Lime Checklist</div>
+                        <div class="template-desc">Яркий чеклист</div>
+                    </div>
+                </div>
+                <!-- App List -->
+                <div class="template-card">
+                    <div class="template-preview app_list">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">App List</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">App List</div>
+                        <div class="template-desc">Стиль приложения</div>
+                    </div>
+                </div>
+                <!-- Paper Image -->
+                <div class="template-card">
+                    <div class="template-preview paper_image">
+                        <div class="template-accent"></div>
+                        <div class="template-preview-content">
+                            <div class="template-preview-title">Paper Texture</div>
+                        </div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">Paper Texture</div>
+                        <div class="template-desc">Мятая бумага</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-tag">Цены</div>
+                <h2 class="section-title">Начни бесплатно</h2>
+                <p class="section-subtitle">
+                    3 карусели каждый месяц — без оплаты. Для большего есть PRO.
+                </p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-name">Free</div>
+                    <div class="pricing-desc">Для старта</div>
+                    <div class="pricing-price">
+                        <span class="price-value">0₽</span>
+                        <span class="price-period">/ навсегда</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>3 карусели в месяц</li>
+                        <li>Все 15 стилей дизайна</li>
+                        <li>До 10 слайдов</li>
+                        <li>Голосовой ввод</li>
+                    </ul>
+                    <a href="https://t.me/swipelybot" target="_blank" class="btn btn-secondary">
+                        Попробовать бесплатно
+                    </a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="pricing-name">PRO</div>
+                    <div class="pricing-desc">Для регулярного контента</div>
+                    <div class="pricing-price">
+                        <span class="price-value">990₽</span>
+                        <span class="price-period">/ месяц</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Безлимит каруселей</li>
+                        <li>Без водяного знака</li>
+                        <li>Скидка 20% на Photo Mode</li>
+                        <li>Приоритетная генерация</li>
+                    </ul>
+                    <a href="https://t.me/swipelybot" target="_blank" class="btn btn-primary">
+                        Оформить PRO
+                    </a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-name">Photo Mode</div>
+                    <div class="pricing-desc">Карусели с твоим лицом</div>
+                    <div class="pricing-price">
+                        <span class="price-value">от 149₽</span>
+                        <span class="price-period">/ карусель</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>AI-генерация с твоим фото</li>
+                        <li>Мультяшный или реалистичный</li>
+                        <li>Уникальные сцены</li>
+                        <li>Пакеты слайдов со скидкой</li>
+                    </ul>
+                    <a href="https://t.me/swipelybot" target="_blank" class="btn btn-secondary">
+                        Узнать больше
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <div class="cta-content">
+                <h2 class="cta-title">Готов создать первую карусель?</h2>
+                <p class="cta-subtitle">
+                    Открой бота, отправь идею и получи готовый контент через 30 секунд. Первые 3 — бесплатно.
+                </p>
+                <div class="cta-buttons">
+                    <a href="https://t.me/swipelybot" target="_blank" class="btn btn-primary btn-large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                        </svg>
+                        Открыть Swipely в Telegram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="logo-icon" style="width: 32px; height: 32px;">
+                    <img src="logo.png" alt="Swipely">
+                </div>
+                <span style="font-weight: 600;">Swipely</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Политика конфиденциальности</a>
+                <a href="#">Публичная оферта</a>
+                <a href="https://t.me/lvmn_creator" target="_blank">Поддержка</a>
+            </div>
+            <div class="footer-social">
+                <a href="https://t.me/swipelybot" target="_blank" title="Telegram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                    </svg>
+                </a>
+                <a href="https://instagram.com/lvmn.ai" target="_blank" title="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5"/>
+                        <circle cx="12" cy="12" r="4"/>
+                        <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Telegram Button -->
+    <div class="telegram-float">
+        <a href="https://t.me/swipelybot" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+            </svg>
+            <span>Написать боту</span>
+        </a>
+    </div>
+
+    <script>
+        // Create floating particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            if (Math.random() > 0.5) {
+                particle.style.background = '#3D9FFF';
+            }
+            particlesContainer.appendChild(particle);
+        }
+
+        // Navbar scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.step, .benefit-card, .template-card, .pricing-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
