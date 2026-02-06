@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 1200px;
+            height: 630px;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .container {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(145deg, #0A0F1A 0%, #0D1B2A 50%, #0A0F1A 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 100px;
+            overflow: hidden;
+        }
+
+        /* Decorative gradient orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #0A84FF 0%, transparent 70%);
+            top: -100px;
+            right: -50px;
+            opacity: 0.25;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #D4F542 0%, transparent 70%);
+            bottom: -80px;
+            left: -60px;
+            opacity: 0.15;
+        }
+
+        .orb-3 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #0A84FF 0%, transparent 70%);
+            bottom: 50px;
+            right: 200px;
+            opacity: 0.12;
+        }
+
+        /* Grid pattern overlay */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* Top accent line */
+        .top-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #0A84FF 0%, #D4F542 50%, #0A84FF 100%);
+        }
+
+        /* Content */
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Logo mark */
+        .logo-mark {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0A84FF, #3D9FFF);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(10, 132, 255, 0.3);
+        }
+
+        .logo-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(212, 245, 66, 0.1);
+            border: 1px solid rgba(212, 245, 66, 0.2);
+        }
+
+        .logo-badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #D4F542;
+        }
+
+        .logo-badge-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #D4F542;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-size: 72px;
+            font-weight: 800;
+            color: #FFFFFF;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .title .highlight {
+            background: linear-gradient(135deg, #0A84FF, #5AB0FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 26px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.4;
+            max-width: 650px;
+        }
+
+        /* Decorative carousel cards on the right */
+        .cards {
+            position: absolute;
+            right: 80px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .card {
+            width: 140px;
+            height: 180px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:nth-child(1) {
+            transform: translateY(-20px);
+        }
+
+        .card:nth-child(2) {
+            transform: translateY(10px);
+        }
+
+        .card:nth-child(3) {
+            transform: translateY(-10px);
+        }
+
+        .card-line {
+            width: 60%;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            margin-bottom: 8px;
+        }
+
+        .card-line.short {
+            width: 40%;
+        }
+
+        .card-line.accent {
+            background: rgba(10, 132, 255, 0.3);
+        }
+
+        .card-line.lime {
+            background: rgba(212, 245, 66, 0.25);
+        }
+
+        .card-block {
+            flex: 1;
+            border-radius: 8px;
+            margin-top: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .card-number {
+            position: absolute;
+            bottom: 12px;
+            right: 14px;
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Bottom decorative dots */
+        .dots {
+            position: absolute;
+            bottom: 40px;
+            left: 100px;
+            display: flex;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background: #0A84FF;
+        }
+
+        /* URL text */
+        .url {
+            position: absolute;
+            bottom: 40px;
+            right: 80px;
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Background elements -->
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <div class="grid-overlay"></div>
+        <div class="top-line"></div>
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="logo-mark">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 28 28" fill="none">
+                        <path d="M7 9h14M7 14h14M7 19h9" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="logo-badge">
+                    <div class="logo-badge-dot"></div>
+                    <span class="logo-badge-text">AI-Powered</span>
+                </div>
+            </div>
+
+            <div class="title">
+                <span class="highlight">Swipely</span>
+            </div>
+
+            <div class="subtitle">
+                AI-генератор каруселей<br>для Instagram
+            </div>
+        </div>
+
+        <!-- Decorative carousel cards -->
+        <div class="cards">
+            <div class="card">
+                <div class="card-line accent"></div>
+                <div class="card-line short"></div>
+                <div class="card-block"></div>
+                <span class="card-number">01</span>
+            </div>
+            <div class="card">
+                <div class="card-line lime"></div>
+                <div class="card-line"></div>
+                <div class="card-line short"></div>
+                <div class="card-block"></div>
+                <span class="card-number">02</span>
+            </div>
+            <div class="card">
+                <div class="card-line accent"></div>
+                <div class="card-line short"></div>
+                <div class="card-block"></div>
+                <span class="card-number">03</span>
+            </div>
+        </div>
+
+        <!-- Bottom elements -->
+        <div class="dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+
+        <div class="url">swipely.ai</div>
+    </div>
+</body>
+</html>
