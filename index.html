@@ -9,11 +9,9 @@
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106696692', 'ym');
-
         ym(106696692, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/106696692" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,12 +20,9 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
     <meta name="keywords" content="генератор каруселей, карусель для Instagram, AI карусель, Telegram бот карусели, создать карусель онлайн, дизайн карусели, контент для соцсетей, Swipely">
     <link rel="canonical" href="https://swipely-landing.vercel.app/">
-    <meta name="theme-color" content="#0A84FF">
+    <meta name="theme-color" content="#D4F542">
     <meta name="author" content="Swipely">
-    <meta name="yandex-verification" content="">
-    <meta name="google-site-verification" content="">
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://swipely-landing.vercel.app/">
     <meta property="og:title" content="Swipely — AI-генератор каруселей для Instagram за 30 секунд">
@@ -35,129 +30,104 @@
     <meta property="og:image" content="https://swipely-landing.vercel.app/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Swipely — AI-генератор каруселей: от текста к готовым слайдам за 30 секунд">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="Swipely">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Swipely — AI-генератор каруселей для Instagram за 30 секунд">
     <meta name="twitter:description" content="Отправь текст в Telegram — получи дизайнерскую карусель. 15 шаблонов, бесплатный старт.">
     <meta name="twitter:image" content="https://swipely-landing.vercel.app/og-image.png">
-    <meta name="twitter:image:alt" content="Swipely — AI-генератор каруселей для соцсетей">
 
-    <!-- Fonts (optimized: only used weights) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='grad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23FF6B6B'/><stop offset='100%25' style='stop-color:%23EE5A6F'/></linearGradient></defs><rect width='32' height='32' rx='8' fill='url(%23grad)'/><path d='M10 12h12M10 16h12M10 20h8' stroke='white' stroke-width='2.5' stroke-linecap='round'/></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D4F542'/><path d='M10 12h12M10 16h12M10 20h8' stroke='%230D0D14' stroke-width='2.5' stroke-linecap='round'/></svg>">
     <link rel="apple-touch-icon" href="logo.png">
 
     <style>
         :root {
-            --primary: #0A84FF;
-            --primary-dark: #0066CC;
-            --primary-light: #3D9FFF;
-            --accent: #FF6B6B;
-            --accent-dark: #EE5A6F;
-            --teal: #1E3A5F;
-            --teal-light: #4A6B8A;
-            --charcoal: #1A1A2E;
-            --charcoal-light: #2D2D44;
-            --warm-white: #F8FAFC;
-            --cream: #E8F4FC;
+            --bg: #FAFAF9;
+            --bg-card: #FFFFFF;
+            --bg-card-hover: #F5FBD8;
+            --grid-fine: rgba(0,0,0,0.055);
+            --grid-major: rgba(0,0,0,0.10);
+            --border: rgba(0,0,0,0.09);
+            --border-strong: rgba(0,0,0,0.16);
+            --text: #13141F;
+            --text-2: rgba(19,20,31,0.58);
+            --text-3: rgba(19,20,31,0.32);
+            --blue: #0A84FF;
+            --blue-dim: rgba(10,132,255,0.10);
+            --blue-glow: rgba(10,132,255,0.20);
+            --lime: #D4F542;
+            --lime-dim: rgba(212,245,66,0.12);
+            --pink: #F9A8D4;
+            --coral: #FF3B30;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Outfit', -apple-system, sans-serif;
-            background: #FFFFFF;
-            color: var(--charcoal);
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background: var(--bg);
             overflow-x: hidden;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
-        /* Animated gradient background */
-        .gradient-bg {
+        /* === BLUEPRINT GRID BACKGROUND === */
+        body::before {
+            content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background:
-                radial-gradient(ellipse 80% 50% at 20% 40%, rgba(10, 132, 255, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 60% at 80% 20%, rgba(10, 132, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(ellipse 50% 80% at 60% 80%, rgba(61, 159, 255, 0.06) 0%, transparent 50%),
-                #FFFFFF;
-            animation: gradientShift 20s ease infinite;
+            inset: 0;
+            z-index: -2;
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(var(--grid-fine) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-fine) 1px, transparent 1px),
+                linear-gradient(var(--grid-major) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-major) 1px, transparent 1px);
+            background-size: 24px 24px, 24px 24px, 120px 120px, 120px 120px;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(3deg); }
-        }
-
-        /* Floating particles */
-        .particles {
+        body::after {
+            content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
             pointer-events: none;
+            background:
+                radial-gradient(ellipse 700px 500px at 10% 15%, rgba(212,245,66,0.05) 0%, transparent 65%),
+                radial-gradient(ellipse 500px 600px at 88% 75%, rgba(212,245,66,0.04) 0%, transparent 65%);
         }
 
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 15s infinite ease-in-out;
+        h1, h2, h3, h4 {
+            font-family: 'Syne', sans-serif;
+            line-height: 1.1;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.3; }
-            90% { opacity: 0.3; }
-            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
-        }
-
-        /* Navigation */
+        /* === NAV === */
         nav {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             z-index: 100;
-            padding: 1.5rem 2rem;
+            padding: 1.25rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.9);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
+            background: rgba(250,250,249,0.84);
+            border-bottom: 1px solid var(--border);
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            padding: 0.875rem 2rem;
+            background: rgba(250,250,249,0.97);
+            box-shadow: 0 1px 0 var(--border), 0 4px 20px rgba(0,0,0,0.07);
         }
 
         .logo {
@@ -165,189 +135,196 @@
             align-items: center;
             gap: 0.75rem;
             text-decoration: none;
-            color: var(--charcoal);
+            color: var(--text);
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+            width: 34px; height: 34px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(10, 132, 255, 0.3);
+            border: 1px solid var(--border-strong);
+            flex-shrink: 0;
         }
 
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .logo-icon img { width: 100%; height: 100%; object-fit: cover; }
 
         .logo-text {
-            font-size: 1.5rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.02em;
         }
 
         .nav-cta {
             display: flex;
-            gap: 1rem;
+            gap: 0.25rem;
             align-items: center;
         }
 
         .nav-link {
-            color: rgba(26, 26, 46, 0.7);
+            color: var(--text-2);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 400;
+            font-size: 0.88rem;
             transition: color 0.2s;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.875rem;
+            border-radius: 6px;
         }
 
-        .nav-link:hover {
-            color: var(--charcoal);
-        }
+        .nav-link:hover { color: var(--text); }
 
-        /* Buttons */
+        /* === BUTTONS === */
         .btn {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.875rem 1.75rem;
-            border-radius: 100px;
-            font-family: inherit;
-            font-size: 1rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.92rem;
             font-weight: 600;
             text-decoration: none;
             cursor: pointer;
             border: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
             position: relative;
-            overflow: hidden;
+            letter-spacing: 0.01em;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: 0 4px 24px rgba(10, 132, 255, 0.4);
+            background: var(--lime);
+            color: #13141F;
+            box-shadow: 0 0 0 1px rgba(212,245,66,0.4), 0 4px 20px rgba(212,245,66,0.28);
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 32px rgba(10, 132, 255, 0.5);
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
+            background: #c8e83a;
+            box-shadow: 0 0 0 1px rgba(212,245,66,0.6), 0 8px 32px rgba(212,245,66,0.40);
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: rgba(26, 26, 46, 0.05);
-            color: var(--charcoal);
-            border: 1px solid rgba(26, 26, 46, 0.15);
-            backdrop-filter: blur(10px);
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border-strong);
         }
 
         .btn-secondary:hover {
-            background: rgba(26, 26, 46, 0.1);
-            border-color: rgba(26, 26, 46, 0.25);
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.28);
         }
 
-        .btn-large {
-            padding: 1.125rem 2.5rem;
-            font-size: 1.125rem;
+        .btn-large { padding: 0.95rem 2rem; font-size: 1rem; }
+
+        /* === SECTION COMMONS === */
+        .section-container { max-width: 1200px; margin: 0 auto; }
+
+        .section-header { text-align: center; margin-bottom: 3.5rem; }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #5A7A00;
+            background: var(--lime-dim);
+            border: 1px solid rgba(212,245,66,0.4);
+            padding: 0.28rem 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 1.25rem;
         }
 
-        /* Hero Section */
+        .section-tag::before { content: '//'; opacity: 0.45; margin-right: 0.2rem; }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            margin-bottom: 0.875rem;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--text-2);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* === HERO === */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 8rem 2rem 4rem;
+            padding: 9rem 2rem 5rem;
             position: relative;
+            overflow: hidden;
         }
 
         .hero-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
         }
 
-        .hero-content {
-            animation: fadeInUp 1s ease-out;
-        }
+        .hero-content { animation: fadeUp 0.9s ease-out; }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(10, 132, 255, 0.15);
-            border: 1px solid rgba(10, 132, 255, 0.3);
-            border-radius: 100px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--primary-light);
+            padding: 0.35rem 0.875rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #5A7A00;
+            background: var(--lime-dim);
+            border: 1px solid rgba(130,180,0,0.30);
+            border-radius: 4px;
             margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease-out 0.1s backwards;
+            animation: fadeUp 0.9s ease-out 0.1s backwards;
         }
 
-        .hero-badge::before {
-            content: '';
-        }
+        .hero-badge::before { content: '▶'; font-size: 0.5rem; }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2.75rem, 5.5vw, 4.5rem);
             font-weight: 800;
-            line-height: 1.1;
+            letter-spacing: -0.045em;
             margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-            animation: fadeInUp 1s ease-out 0.2s backwards;
+            animation: fadeUp 0.9s ease-out 0.2s backwards;
+            color: var(--text);
         }
 
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .hero h1 .accent-blue { color: #5A7A00; }
+        .hero h1 .accent-lime { color: #5A7A00; }
 
         .hero-subtitle {
-            font-size: 1.25rem;
-            color: rgba(26, 26, 46, 0.7);
-            margin-bottom: 2rem;
-            max-width: 520px;
-            animation: fadeInUp 1s ease-out 0.3s backwards;
+            font-size: 1.125rem;
+            color: var(--text-2);
+            margin-bottom: 2.25rem;
+            max-width: 460px;
+            animation: fadeUp 0.9s ease-out 0.3s backwards;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 0.875rem;
             flex-wrap: wrap;
-            animation: fadeInUp 1s ease-out 0.4s backwards;
+            animation: fadeUp 0.9s ease-out 0.4s backwards;
         }
 
         .hero-stats {
@@ -355,43 +332,43 @@
             gap: 2.5rem;
             margin-top: 3rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(26, 26, 46, 0.1);
-            animation: fadeInUp 1s ease-out 0.5s backwards;
-        }
-
-        .stat {
-            text-align: left;
+            border-top: 1px solid var(--border);
+            animation: fadeUp 0.9s ease-out 0.5s backwards;
         }
 
         .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
             font-family: 'Space Mono', monospace;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #0D0D14;
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.3rem;
         }
 
         .stat-label {
-            font-size: 0.875rem;
-            color: rgba(26, 26, 46, 0.5);
-            margin-top: 0.25rem;
+            font-size: 0.75rem;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
         }
 
-        /* Hero Visual - Carousel Stack */
+        /* Hero carousel visual */
         .hero-visual {
             position: relative;
-            perspective: 1000px;
+            height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             animation: fadeIn 1s ease-out 0.3s backwards;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .carousel-stack {
             position: relative;
             width: 100%;
-            height: 500px;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -399,778 +376,568 @@
 
         .carousel-card {
             position: absolute;
-            width: 280px;
-            height: 350px;
-            border-radius: 24px;
+            width: 255px;
+            height: 325px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 25px 80px -20px rgba(0, 0, 0, 0.5);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.08);
+            transition: all 0.5s cubic-bezier(0.4,0,0.2,1);
             cursor: pointer;
         }
 
-        .carousel-card:nth-child(1) {
-            transform: rotate(-12deg) translateX(-60px);
-            z-index: 1;
-        }
-
-        .carousel-card:nth-child(2) {
-            transform: rotate(0deg) translateY(-20px);
-            z-index: 2;
-        }
-
-        .carousel-card:nth-child(3) {
-            transform: rotate(12deg) translateX(60px);
-            z-index: 1;
-        }
+        .carousel-card:nth-child(1) { transform: rotate(-11deg) translateX(-70px); z-index: 1; }
+        .carousel-card:nth-child(2) { transform: rotate(0deg) translateY(-18px); z-index: 3; }
+        .carousel-card:nth-child(3) { transform: rotate(11deg) translateX(70px); z-index: 1; }
 
         @media (hover: hover) {
-            .carousel-stack:hover .carousel-card:nth-child(1) {
-                transform: rotate(-18deg) translateX(-100px) translateY(20px);
-            }
-
-            .carousel-stack:hover .carousel-card:nth-child(2) {
-                transform: rotate(0deg) translateY(-40px) scale(1.05);
-                z-index: 3;
-            }
-
-            .carousel-stack:hover .carousel-card:nth-child(3) {
-                transform: rotate(18deg) translateX(100px) translateY(20px);
-            }
+            .carousel-stack:hover .carousel-card:nth-child(1) { transform: rotate(-16deg) translateX(-110px) translateY(15px); }
+            .carousel-stack:hover .carousel-card:nth-child(2) { transform: rotate(0deg) translateY(-35px) scale(1.04); }
+            .carousel-stack:hover .carousel-card:nth-child(3) { transform: rotate(16deg) translateX(110px) translateY(15px); }
         }
 
-        /* Grid Multi Style Slide */
-        .slide-grid-multi {
+        /* Grid Multi style slide (white paper + dark grid) */
+        .slide-dark {
             background: #FAFAFA;
             position: relative;
-            overflow: hidden;
             height: 100%;
+            overflow: hidden;
         }
 
-        .slide-grid-multi::before {
+        .slide-dark::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background-image:
                 linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
             background-size: 20px 20px;
         }
 
-        .slide-deco {
+        /* Diagonal colored bars — grid_multi signature */
+        .slide-deco-dots {
             position: absolute;
-            top: 16px;
-            right: 16px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            top: 14px; right: 14px;
+            display: flex; flex-direction: column; gap: 5px;
         }
 
-        .slide-deco-line {
-            width: 60px;
-            height: 6px;
-            background: #D4F542;
+        .slide-deco-dots span {
+            display: block;
+            width: 48px; height: 6px;
             border-radius: 3px;
             transform: rotate(-25deg);
         }
 
-        .slide-deco-line:nth-child(2) { opacity: 0.8; }
-        .slide-deco-line:nth-child(3) { opacity: 0.6; }
+        .slide-deco-dots span:nth-child(1) { background: #C9F542; }
+        .slide-deco-dots span:nth-child(2) { background: #F9A8D4; opacity: 0.85; }
+        .slide-deco-dots span:nth-child(3) { background: #0A84FF; opacity: 0.6; }
 
-        .slide-content {
+        .slide-inner {
             position: relative;
             z-index: 1;
-            padding: 1.5rem;
+            padding: 1.25rem;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .slide-number {
+        .slide-num {
             font-family: 'Space Mono', monospace;
-            font-size: 0.65rem;
-            color: #888;
+            font-size: 0.55rem;
+            color: rgba(0,0,0,0.3);
             margin-bottom: 0.75rem;
+            letter-spacing: 0.1em;
         }
 
         .slide-title {
-            font-family: 'Inter', 'Outfit', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 800;
-            line-height: 1.1;
-            color: #0A0A0A;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.75rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #13141F;
+            line-height: 1.3;
+            margin-bottom: 0.625rem;
         }
 
-        .slide-title .highlight {
-            display: inline;
-            background: #D4F542;
-            padding: 2px 8px;
-            position: relative;
-        }
-
-        .slide-title .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 10%;
-            width: 80%;
-            height: 2px;
-            background: #60A5FA;
-            border-radius: 1px;
-        }
-
-        .slide-title .highlight-pink {
-            background: #F9A8D4;
-        }
-
-        .slide-title .highlight-pink::after {
-            display: none;
-        }
+        .slide-title .hl { background: #C9F542; color: #080808; padding: 0 2px; border-radius: 2px; }
+        .slide-title .hl-pink { background: #F9A8D4; color: #080808; padding: 0 2px; border-radius: 2px; }
 
         .slide-text {
-            font-family: 'Inter', 'Outfit', sans-serif;
-            font-size: 0.7rem;
-            color: #888;
+            font-size: 0.63rem;
+            color: rgba(0,0,0,0.45);
             line-height: 1.5;
         }
 
         .slide-footer {
             position: absolute;
-            bottom: 12px;
-            left: 16px;
-            right: 16px;
+            bottom: 12px; left: 13px; right: 13px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .slide-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #F9A8D4, #D4F542);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 800;
-            color: #0A0A0A;
+            width: 20px; height: 20px;
+            background: var(--lime);
+            border-radius: 5px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; font-weight: 800; color: #0D0D14;
         }
 
         .slide-cta {
-            font-size: 0.55rem;
-            color: #888;
+            font-size: 0.5rem;
+            color: rgba(0,0,0,0.28);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem; left: 50%;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column;
+            align-items: center; gap: 0.375rem;
+            opacity: 0.3;
+            animation: bounce 2.5s infinite;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            color: var(--text-2);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        /* How It Works Section */
-        .how-it-works {
-            padding: 8rem 2rem;
-            position: relative;
+        @keyframes bounce {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
         }
 
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .section-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(10, 132, 255, 0.1);
-            border: 1px solid rgba(10, 132, 255, 0.2);
-            border-radius: 100px;
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-        }
-
-        .section-subtitle {
-            font-size: 1.125rem;
-            color: rgba(26, 26, 46, 0.6);
-            max-width: 600px;
-            margin: 0 auto;
-        }
+        /* === HOW IT WORKS === */
+        .how-it-works { padding: 7rem 2rem; }
 
         .steps {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            position: relative;
-        }
-
-        .steps::before {
-            content: '';
-            position: absolute;
-            top: 60px;
-            left: 16.66%;
-            right: 16.66%;
-            height: 2px;
-            background: linear-gradient(90deg,
-                transparent,
-                rgba(10, 132, 255, 0.3) 20%,
-                rgba(10, 132, 255, 0.3) 80%,
-                transparent
-            );
+            gap: 1.25rem;
+            margin-top: 4rem;
         }
 
         .step {
-            text-align: center;
+            padding: 2.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             position: relative;
-            padding: 2rem;
-            border-radius: 24px;
-            background: #FFFFFF;
-            border: 1px solid rgba(26, 26, 46, 0.08);
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 18px; height: 18px;
+            border-top: 2px solid var(--lime);
+            border-left: 2px solid var(--lime);
+            border-radius: 1px 0 0 0;
         }
 
         .step:hover {
-            background: #FFFFFF;
-            transform: translateY(-8px);
-            border-color: rgba(10, 132, 255, 0.3);
-            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.1);
+            background: var(--bg-card-hover);
+            border-color: rgba(212,245,66,0.4);
+            box-shadow: 0 0 40px rgba(212,245,66,0.08);
         }
 
         .step-number {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-family: 'Space Mono', monospace;
-            font-size: 1.5rem;
+            font-size: 2.75rem;
             font-weight: 700;
-            box-shadow: 0 8px 32px rgba(10, 132, 255, 0.3);
-            position: relative;
-            z-index: 1;
-        }
-
-        .step-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            color: var(--lime);
+            opacity: 0.5;
+            line-height: 1;
+            margin-bottom: 1.25rem;
+            display: block;
         }
 
         .step-title {
-            font-size: 1.25rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.625rem;
+            color: var(--text);
         }
 
-        .step-desc {
-            font-size: 0.95rem;
-            color: rgba(26, 26, 46, 0.6);
-            line-height: 1.6;
-        }
+        .step-desc { color: var(--text-2); font-size: 0.9rem; line-height: 1.65; }
 
-        .step-number {
-            color: white;
-        }
-
-        /* Demo Section */
-        .demo-section {
-            padding: 6rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(10, 132, 255, 0.03), transparent);
-        }
+        /* === DEMO === */
+        .demo-section { padding: 5rem 2rem; }
 
         .demo-container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            background: #FFFFFF;
-            border: 1px solid rgba(26, 26, 46, 0.08);
-            border-radius: 32px;
-            padding: 3rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 2.5rem;
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.05);
         }
 
         .demo-container::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(10, 132, 255, 0.5), transparent);
+            top: -1px; left: -1px;
+            width: 20px; height: 20px;
+            border-top: 2px solid var(--lime);
+            border-left: 2px solid var(--lime);
+        }
+
+        .demo-container::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 20px; height: 20px;
+            border-bottom: 2px solid var(--lime);
+            border-right: 2px solid var(--lime);
         }
 
         .demo-chat {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 0.875rem;
             margin-bottom: 2rem;
         }
 
-        .chat-message {
-            display: flex;
-            gap: 1rem;
-            align-items: flex-start;
-            animation: slideIn 0.5s ease-out backwards;
-        }
-
-        .chat-message:nth-child(1) { animation-delay: 0.1s; }
-        .chat-message:nth-child(2) { animation-delay: 0.3s; }
-        .chat-message:nth-child(3) { animation-delay: 0.5s; }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .chat-message.user {
-            flex-direction: row-reverse;
-        }
+        .chat-message { display: flex; gap: 0.75rem; align-items: flex-start; }
+        .chat-message.user { flex-direction: row-reverse; }
 
         .chat-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 36px; height: 36px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
-            color: white;
+            border: 1px solid var(--border);
         }
 
-        .chat-message.user .chat-avatar {
-            background: var(--teal);
-            color: white;
-        }
+        .chat-avatar.user-av { background: var(--lime-dim); color: #5A7A00; }
+        .chat-avatar.bot-av { background: transparent; overflow: hidden; }
+        .chat-avatar.bot-av img { width: 100%; height: 100%; object-fit: cover; }
 
         .chat-bubble {
-            max-width: 70%;
-            padding: 1rem 1.25rem;
-            border-radius: 18px;
-            background: rgba(10, 132, 255, 0.08);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            max-width: 72%;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.6;
         }
 
         .chat-message.user .chat-bubble {
-            background: rgba(26, 26, 46, 0.05);
-            border: 1px solid rgba(26, 26, 46, 0.1);
+            background: var(--lime);
+            color: #13141F;
+            border-radius: 10px 2px 10px 10px;
+        }
+
+        .chat-message:not(.user) .chat-bubble {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+            border: 1px solid var(--border);
+            border-radius: 2px 10px 10px 10px;
         }
 
         .demo-result {
             display: flex;
-            gap: 1rem;
+            gap: 0.875rem;
             overflow-x: auto;
-            padding: 1rem 0;
-            scroll-snap-type: x mandatory;
+            padding-bottom: 0.5rem;
+            scrollbar-width: none;
         }
+
+        .demo-result::-webkit-scrollbar { display: none; }
 
         .demo-slide {
             flex-shrink: 0;
-            width: 200px;
-            height: 250px;
-            border-radius: 16px;
-            scroll-snap-align: start;
-            transition: transform 0.3s ease;
-        }
-
-        @media (hover: hover) {
-            .demo-slide:hover {
-                transform: scale(1.05);
-            }
-        }
-
-        .demo-slide {
-            background: #FAFAFA;
+            width: 178px; height: 222px;
+            background: #0C0C18;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.08);
             position: relative;
             overflow: hidden;
         }
 
         .demo-slide::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: absolute; inset: 0;
             background-image:
-                linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
-            background-size: 15px 15px;
+                linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+            background-size: 18px 18px;
         }
 
         .demo-slide-deco {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+            top: 10px; right: 10px;
+            display: flex; flex-direction: column; gap: 4px;
         }
 
         .demo-slide-deco span {
-            width: 40px;
-            height: 4px;
-            background: #D4F542;
-            border-radius: 2px;
+            display: block;
+            width: 38px; height: 5px;
+            border-radius: 3px;
             transform: rotate(-25deg);
         }
 
-        .demo-slide-deco span:nth-child(2) { opacity: 0.7; }
-        .demo-slide-deco span:nth-child(3) { opacity: 0.5; }
+        .demo-slide-deco span:nth-child(1) { background: var(--lime); }
+        .demo-slide-deco span:nth-child(2) { background: var(--pink); opacity: 0.65; }
+        .demo-slide-deco span:nth-child(3) { background: var(--blue); opacity: 0.5; }
 
         .demo-slide-content {
             position: relative;
             z-index: 1;
-            padding: 1.25rem;
+            padding: 1rem;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            display: flex; flex-direction: column; justify-content: center;
         }
 
         .demo-slide-num {
             font-family: 'Space Mono', monospace;
-            font-size: 0.6rem;
-            color: #888;
+            font-size: 0.5rem;
+            color: rgba(255,255,255,0.25);
             margin-bottom: 0.5rem;
+            letter-spacing: 0.08em;
         }
 
         .demo-slide-title {
-            font-family: 'Inter', 'Outfit', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 800;
-            color: #0A0A0A;
-            margin-bottom: 0.4rem;
-            line-height: 1.15;
+            font-family: 'Syne', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.3;
+            margin-bottom: 0.375rem;
         }
 
-        .demo-slide-title .hl {
-            background: #D4F542;
-            padding: 1px 6px;
-            position: relative;
-        }
-
-        .demo-slide-title .hl::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 10%;
-            width: 80%;
-            height: 2px;
-            background: #60A5FA;
-        }
-
-        .demo-slide-title .hl-pink {
-            background: #F9A8D4;
-        }
-
-        .demo-slide-title .hl-pink::after {
-            display: none;
-        }
+        .demo-slide-title .hl { background: var(--lime); color: #080808; padding: 0 1px; border-radius: 2px; }
+        .demo-slide-title .hl-pink { background: var(--pink); color: #080808; padding: 0 1px; border-radius: 2px; }
 
         .demo-slide-text {
-            font-size: 0.65rem;
-            color: #888;
-            line-height: 1.4;
+            font-size: 0.58rem;
+            color: rgba(255,255,255,0.38);
+            line-height: 1.5;
         }
 
         .demo-slide-footer {
             position: absolute;
-            bottom: 10px;
-            left: 12px;
-            right: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            bottom: 8px; left: 10px; right: 10px;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
         .demo-slide-avatar {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #F9A8D4, #D4F542);
-            font-size: 8px;
-            font-weight: 800;
-            color: #0A0A0A;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 16px; height: 16px;
+            border-radius: 4px;
+            background: var(--lime);
+            font-size: 7px; font-weight: 800; color: #0D0D14;
+            display: flex; align-items: center; justify-content: center;
         }
 
-        /* Benefits Section */
-        .benefits {
-            padding: 8rem 2rem;
-        }
+        /* === BENEFITS === */
+        .benefits { padding: 7rem 2rem; }
 
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1.25rem;
             margin-top: 4rem;
         }
 
         .benefit-card {
-            padding: 2.5rem;
-            border-radius: 24px;
-            background: #FFFFFF;
-            border: 1px solid rgba(26, 26, 46, 0.08);
-            transition: all 0.4s ease;
+            padding: 2.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             position: relative;
+            transition: all 0.35s ease;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
         }
 
         .benefit-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--primary-light));
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            top: -1px; left: -1px;
+            width: 14px; height: 14px;
+            border-top: 2px solid var(--border-strong);
+            border-left: 2px solid var(--border-strong);
+            transition: border-color 0.3s;
         }
 
         .benefit-card:hover {
-            background: #FFFFFF;
-            transform: translateY(-4px);
-            border-color: rgba(10, 132, 255, 0.3);
-            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.1);
+            border-color: rgba(212,245,66,0.4);
+            background: var(--bg-card-hover);
+            box-shadow: 0 0 48px rgba(212,245,66,0.08);
         }
 
-        .benefit-card:hover::before {
-            opacity: 1;
-        }
+        .benefit-card:hover::before { border-color: var(--lime); }
 
         .benefit-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, rgba(10, 132, 255, 0.15), rgba(61, 159, 255, 0.08));
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+            width: 48px; height: 48px;
+            background: var(--lime-dim);
+            border: 1px solid rgba(212,245,66,0.35);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+            margin-bottom: 1.25rem;
         }
 
         .benefit-title {
-            font-size: 1.25rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.125rem;
             font-weight: 700;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.625rem;
+            color: var(--text);
         }
 
-        .benefit-desc {
-            color: rgba(26, 26, 46, 0.6);
-            line-height: 1.6;
-        }
+        .benefit-desc { color: var(--text-2); font-size: 0.9rem; line-height: 1.65; }
 
-        /* Templates Section */
-        .templates {
-            padding: 8rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(10, 132, 255, 0.03), transparent);
-        }
+        /* === TEMPLATES === */
+        .templates { padding: 7rem 2rem; }
 
         .templates-carousel {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             overflow-x: auto;
             padding: 2rem 0;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
         }
 
-        .templates-carousel::-webkit-scrollbar {
-            display: none;
-        }
+        .templates-carousel::-webkit-scrollbar { display: none; }
 
         .template-card {
             flex-shrink: 0;
-            width: 260px;
-            border-radius: 20px;
+            width: 230px;
+            border-radius: 10px;
             overflow: hidden;
-            background: #FFFFFF;
-            border: 1px solid rgba(26, 26, 46, 0.08);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             scroll-snap-align: start;
-            transition: all 0.4s ease;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: all 0.35s ease;
         }
 
         .template-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(10, 132, 255, 0.4);
-            box-shadow: 0 20px 60px -20px rgba(10, 132, 255, 0.2);
+            transform: translateY(-6px);
+            border-color: rgba(212,245,66,0.5);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15), 0 0 0 1px rgba(212,245,66,0.3);
         }
 
-        .template-preview {
-            height: 180px;
-            position: relative;
-        }
+        .template-preview { height: 155px; position: relative; overflow: hidden; }
 
-        /* Template preview backgrounds based on actual template colors */
-        .template-preview.notebook { background: linear-gradient(135deg, #F5E6D3, #E8D4B8); }
-        .template-preview.aurora { background: linear-gradient(135deg, #12121A, #7F5AF0); }
-        .template-preview.terminal { background: #0A0A0A; position: relative; }
-        .template-preview.terminal::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(51,255,0,0.03) 0px, rgba(51,255,0,0.03) 1px, transparent 1px, transparent 2px); }
-        .template-preview.editorial { background: #F8F6F0; border-left: 4px solid #DC2626; }
-        .template-preview.luxe { background: linear-gradient(135deg, #0C0C0C, #1a1a1a); }
-        .template-preview.backspace { background: #F0EFED; }
-        .template-preview.star_highlight { background: #FFFFFF; }
-        .template-preview.purple_accent { background: linear-gradient(135deg, #E8E6F2, #D4D0E8); }
-        .template-preview.quote_doodle { background: #F5F3EE; }
-        .template-preview.speech_bubble { background: #F8F8F8; }
+        .template-preview.notebook { background: linear-gradient(135deg, #1A140D, #231B10); }
+        .template-preview.aurora { background: linear-gradient(135deg, #0A0A14, #2D1F6E); }
+        .template-preview.terminal { background: #060E06; }
+        .template-preview.terminal::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(51,255,0,0.045) 0px, rgba(51,255,0,0.045) 1px, transparent 1px, transparent 2px); }
+        .template-preview.editorial { background: #F5F0E6; border-left: 4px solid #DC2626; }
+        .template-preview.luxe { background: linear-gradient(135deg, #080808, #111111); }
+        .template-preview.backspace { background: #EBE9E4; }
+        .template-preview.star_highlight { background: #FCFCFC; }
+        .template-preview.purple_accent { background: linear-gradient(135deg, #2A2048, #1E1A35); }
+        .template-preview.quote_doodle { background: #F2EFE8; }
+        .template-preview.speech_bubble { background: #F5F5F5; }
         .template-preview.grid_multi { background: #FAFAFA; position: relative; }
-        .template-preview.grid_multi::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px); background-size: 20px 20px; }
-        .template-preview.receipt { background: #E8E8E8; }
-        .template-preview.lime_checklist { background: #D4F542; }
-        .template-preview.app_list { background: linear-gradient(135deg, #E8E6F2, #D4D0E8); }
-        .template-preview.paper_image { background: #F5F3EE; }
+        .template-preview.grid_multi::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px); background-size: 18px 18px; }
+        .template-preview.receipt { background: #E5E5E5; }
+        .template-preview.lime_checklist { background: var(--lime); }
+        .template-preview.app_list { background: linear-gradient(135deg, #1A1A2E, #16213E); }
+        .template-preview.paper_image { background: #EDE9E0; }
 
-        /* Accent decorations for previews */
-        .template-accent {
-            position: absolute;
-            border-radius: 4px;
-        }
-        .template-preview.star_highlight .template-accent { background: #FFE500; width: 60%; height: 12px; bottom: 40px; left: 20px; }
-        .template-preview.purple_accent .template-accent { background: #9B8FD9; width: 50%; height: 10px; bottom: 35px; left: 20px; border-radius: 20px; }
-        .template-preview.quote_doodle .template-accent { background: #4ADE80; width: 40px; height: 40px; top: 20px; left: 20px; border-radius: 50%; }
-        .template-preview.speech_bubble .template-accent { background: #FF6B35; width: 70%; height: 50px; bottom: 30px; left: 15%; border-radius: 20px; }
-        .template-preview.grid_multi .template-accent { background: #D4F542; width: 50px; height: 8px; top: 20px; right: 20px; transform: rotate(-25deg); }
-        .template-preview.grid_multi .template-accent-2 { background: #F9A8D4; width: 60%; height: 14px; bottom: 50px; left: 20px; border-radius: 0; }
-        .template-preview.receipt .template-accent { background: #FFFEF5; width: 70%; height: 60%; top: 20%; left: 15%; border-radius: 0; }
-        .template-preview.lime_checklist .template-accent { background: #F5F0E6; width: 75%; height: 55%; bottom: 15%; left: 12.5%; border-radius: 12px; }
-        .template-preview.app_list .template-accent { background: #3B82F6; width: 30px; height: 30px; top: 25px; left: 25px; border-radius: 8px; }
-        .template-preview.paper_image .template-accent { background: #FF5722; width: 50%; height: 10px; bottom: 40px; left: 25%; border-radius: 0; }
-        .template-preview.luxe .template-accent { background: linear-gradient(135deg, #D4AF37, #F5D67B); width: 60%; height: 3px; bottom: 50px; left: 20%; }
-        .template-preview.backspace .template-accent { background: #0A0A0A; font-size: 32px; font-weight: 900; color: #0A0A0A; width: auto; height: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-        .template-preview.aurora .template-accent { background: linear-gradient(135deg, #72F2EB, #2CB67D); width: 80px; height: 80px; border-radius: 50%; bottom: 20px; right: 20px; opacity: 0.7; filter: blur(10px); }
-        .template-preview.terminal .template-accent { color: #33FF00; font-family: monospace; font-size: 11px; position: absolute; top: 20px; left: 15px; background: none; }
-
-        .template-preview-content {
-            display: none;
-        }
+        .template-accent { position: absolute; border-radius: 3px; }
+        .template-preview.star_highlight .template-accent { background: #FFE500; width: 55%; height: 10px; bottom: 38px; left: 18px; }
+        .template-preview.purple_accent .template-accent { background: #9B8FD9; width: 48%; height: 8px; bottom: 32px; left: 18px; border-radius: 20px; }
+        .template-preview.quote_doodle .template-accent { background: #4ADE80; width: 36px; height: 36px; top: 18px; left: 18px; border-radius: 50%; }
+        .template-preview.speech_bubble .template-accent { background: #FF6B35; width: 65%; height: 44px; bottom: 26px; left: 17.5%; border-radius: 18px; }
+        .template-preview.grid_multi .template-accent { background: var(--lime); width: 44px; height: 7px; top: 18px; right: 18px; transform: rotate(-25deg); }
+        .template-preview.grid_multi .template-accent-2 { background: var(--pink); width: 56%; height: 12px; bottom: 46px; left: 18px; border-radius: 0; }
+        .template-preview.receipt .template-accent { background: #FAFAFA; width: 68%; height: 58%; top: 21%; left: 16%; border-radius: 0; }
+        .template-preview.lime_checklist .template-accent { background: #F0EBD8; width: 72%; height: 52%; bottom: 14%; left: 14%; border-radius: 10px; }
+        .template-preview.app_list .template-accent { background: var(--blue); width: 28px; height: 28px; top: 22px; left: 22px; border-radius: 7px; }
+        .template-preview.paper_image .template-accent { background: #FF5722; width: 48%; height: 8px; bottom: 38px; left: 26%; border-radius: 0; }
+        .template-preview.luxe .template-accent { background: linear-gradient(135deg, #D4AF37, #F5D67B); width: 58%; height: 2px; bottom: 48px; left: 21%; }
+        .template-preview.backspace .template-accent { background: none; font-size: 28px; font-weight: 900; color: #0A0A0A; width: auto; height: auto; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .template-preview.aurora .template-accent { background: linear-gradient(135deg, #72F2EB, #2CB67D); width: 72px; height: 72px; border-radius: 50%; bottom: 18px; right: 18px; opacity: 0.65; filter: blur(8px); }
+        .template-preview.terminal .template-accent { color: #33FF00; font-family: monospace; font-size: 9px; position: absolute; top: 18px; left: 14px; background: none; z-index: 1; }
+        .template-preview-content { display: none; }
 
         .template-info {
-            padding: 1.25rem;
+            padding: 1rem 1.125rem;
+            border-top: 1px solid var(--border);
         }
 
         .template-name {
+            font-family: 'Syne', sans-serif;
             font-weight: 600;
-            margin-bottom: 0.25rem;
+            font-size: 0.875rem;
+            color: var(--text);
+            margin-bottom: 0.2rem;
         }
 
-        .template-desc {
-            font-size: 0.85rem;
-            color: rgba(26, 26, 46, 0.5);
-        }
+        .template-desc { font-size: 0.78rem; color: var(--text-2); }
 
-        /* Pricing Section */
-        .pricing {
-            padding: 8rem 2rem;
-        }
+        /* === PRICING === */
+        .pricing { padding: 7rem 2rem; }
 
         .pricing-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 4rem auto 0;
+            gap: 1.25rem;
+            margin-top: 4rem;
         }
 
         .pricing-card {
-            padding: 2.5rem;
-            border-radius: 24px;
-            background: #FFFFFF;
-            border: 1px solid rgba(26, 26, 46, 0.08);
-            transition: all 0.4s ease;
+            padding: 2.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
             position: relative;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: all 0.35s ease;
         }
 
         .pricing-card.featured {
-            background: linear-gradient(135deg, rgba(10, 132, 255, 0.08), rgba(61, 159, 255, 0.03));
-            border-color: rgba(10, 132, 255, 0.3);
-            transform: scale(1.05);
-            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.15);
+            border-color: rgba(212,245,66,0.5);
+            background: rgba(212,245,66,0.06);
         }
 
         .pricing-card.featured::before {
-            content: 'Популярный';
+            content: 'POPULAR';
             position: absolute;
-            top: -12px;
-            left: 50%;
+            top: -11px; left: 50%;
             transform: translateX(-50%);
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: var(--lime);
+            color: #0D0D14;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.14em;
+            padding: 0.22rem 0.875rem;
             border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: white;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(10, 132, 255, 0.1);
-        }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-4px);
+            white-space: nowrap;
         }
 
         .pricing-name {
-            font-size: 1.25rem;
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
         }
 
-        .pricing-desc {
-            font-size: 0.9rem;
-            color: rgba(26, 26, 46, 0.5);
-            margin-bottom: 1.5rem;
-        }
-
-        .pricing-price {
-            margin-bottom: 1.5rem;
-        }
+        .pricing-desc { font-size: 0.85rem; color: var(--text-2); margin-bottom: 1.75rem; }
 
         .price-value {
-            font-size: 2.5rem;
-            font-weight: 800;
             font-family: 'Space Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1;
+            display: block;
         }
 
         .price-period {
-            color: rgba(26, 26, 46, 0.5);
-            font-size: 0.9rem;
+            font-size: 0.82rem;
+            color: var(--text-2);
+            display: block;
+            margin-top: 0.25rem;
+            margin-bottom: 1.75rem;
         }
 
         .pricing-features {
@@ -1179,44 +946,93 @@
         }
 
         .pricing-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+            padding: 0.55rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.88rem;
+            color: var(--text-2);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 0.95rem;
+            gap: 0.625rem;
         }
 
         .pricing-features li::before {
-            content: '';
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230A84FF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
+            content: '—';
+            color: #5A7A00;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.72rem;
+            flex-shrink: 0;
         }
 
-        .pricing-card .btn {
-            width: 100%;
-            justify-content: center;
+        .pricing-card .btn { width: 100%; justify-content: center; }
+
+        /* === FAQ === */
+        .faq-section { padding: 6rem 2rem; }
+
+        .faq-list {
+            max-width: 760px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        /* CTA Section */
-        .cta-section {
-            padding: 8rem 2rem;
-            text-align: center;
-            position: relative;
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
+
+        .faq-item:hover { border-color: rgba(212,245,66,0.35); }
+        .faq-item[open] { border-color: rgba(212,245,66,0.5); }
+
+        .faq-question {
+            padding: 1.1rem 1.375rem;
+            font-weight: 600;
+            font-size: 0.925rem;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            color: var(--text);
+        }
+
+        .faq-question::-webkit-details-marker { display: none; }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: #5A7A00;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .faq-item[open] .faq-question::after { transform: rotate(45deg); }
+
+        .faq-answer {
+            padding: 0 1.375rem 1.1rem;
+            color: var(--text-2);
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        /* === CTA === */
+        .cta-section { padding: 7rem 2rem; }
 
         .cta-container {
-            max-width: 800px;
+            max-width: 760px;
             margin: 0 auto;
             padding: 4rem;
-            background: linear-gradient(135deg, rgba(10, 132, 255, 0.1), rgba(30, 58, 95, 0.15));
-            border: 1px solid rgba(10, 132, 255, 0.2);
-            border-radius: 32px;
+            background: var(--lime-dim);
+            border: 1px solid rgba(212,245,66,0.4);
+            border-radius: 14px;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -1224,50 +1040,55 @@
         .cta-container::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(10, 132, 255, 0.1) 0%, transparent 50%);
-            animation: rotateCta 20s linear infinite;
+            top: -1px; left: -1px;
+            width: 20px; height: 20px;
+            border-top: 2px solid var(--lime);
+            border-left: 2px solid var(--lime);
         }
 
-        @keyframes rotateCta {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .cta-container::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 20px; height: 20px;
+            border-bottom: 2px solid var(--lime);
+            border-right: 2px solid var(--lime);
         }
 
-        .cta-content {
-            position: relative;
-            z-index: 1;
+        .cta-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(212,245,66,0.14) 0%, transparent 70%);
+            pointer-events: none;
         }
+
+        .cta-content { position: relative; z-index: 1; }
 
         .cta-title {
-            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.75rem, 3.5vw, 2.75rem);
             font-weight: 800;
+            letter-spacing: -0.04em;
             margin-bottom: 1rem;
+            color: var(--text);
         }
 
         .cta-subtitle {
-            font-size: 1.125rem;
-            color: rgba(26, 26, 46, 0.7);
-            margin-bottom: 2rem;
-            max-width: 500px;
+            font-size: 1.05rem;
+            color: var(--text-2);
+            margin-bottom: 2.25rem;
+            max-width: 460px;
             margin-left: auto;
             margin-right: auto;
+            line-height: 1.7;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+        .cta-buttons { display: flex; gap: 0.875rem; justify-content: center; flex-wrap: wrap; }
 
-        /* Footer */
+        /* === FOOTER === */
         footer {
-            padding: 4rem 2rem;
-            border-top: 1px solid rgba(26, 26, 46, 0.08);
+            padding: 3.5rem 2rem;
+            border-top: 1px solid var(--border);
         }
 
         .footer-container {
@@ -1277,670 +1098,107 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .footer-brand {
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            color: var(--text);
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
         }
 
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
+        .footer-links { display: flex; gap: 1.75rem; }
 
         .footer-links a {
-            color: rgba(26, 26, 46, 0.5);
+            color: var(--text-2);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.875rem;
             transition: color 0.2s;
         }
 
-        .footer-links a:hover {
-            color: var(--primary);
-        }
+        .footer-links a:hover { color: #5A7A00; }
 
-        .footer-social {
-            display: flex;
-            gap: 1rem;
-        }
+        .footer-social { display: flex; gap: 0.75rem; }
 
         .footer-social a {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: rgba(26, 26, 46, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(26, 26, 46, 0.6);
+            width: 38px; height: 38px;
+            border-radius: 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-2);
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
 
         .footer-social a:hover {
-            background: var(--primary);
-            color: white;
+            background: var(--lime-dim);
+            border-color: rgba(212,245,66,0.4);
+            color: #5A7A00;
         }
 
-        /* Telegram button floating */
-        .telegram-float {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 99;
-        }
+        /* === FLOATING TELEGRAM === */
+        .telegram-float { position: fixed; bottom: 2rem; right: 2rem; z-index: 99; }
 
         .telegram-float a {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 1rem 1.5rem;
-            background: linear-gradient(135deg, #0088cc, #00a0e9);
+            padding: 0.875rem 1.375rem;
+            background: linear-gradient(135deg, #0088cc, #00A0E9);
             color: white;
             text-decoration: none;
             border-radius: 100px;
             font-weight: 600;
-            box-shadow: 0 8px 32px rgba(0, 136, 204, 0.4);
+            font-size: 0.9rem;
+            box-shadow: 0 8px 32px rgba(0,136,204,0.5), 0 0 0 1px rgba(0,136,204,0.3);
             transition: all 0.3s ease;
         }
 
         .telegram-float a:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 136, 204, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,136,204,0.6);
         }
 
-        .telegram-float svg {
-            width: 24px;
-            height: 24px;
-        }
+        .telegram-float svg { width: 22px; height: 22px; }
 
-        /* Mobile responsiveness */
-
-        /* Tablet */
+        /* === RESPONSIVE === */
         @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content {
-                order: 1;
-            }
-
-            .hero-visual {
-                order: 0;
-                margin-bottom: 2rem;
-            }
-
-            .carousel-stack {
-                height: 350px;
-            }
-
-            .carousel-card {
-                width: 200px;
-                height: 260px;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .hero-stats {
-                justify-content: center;
-            }
-
-            .hero-subtitle {
-                margin: 0 auto 2rem;
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-                max-width: 480px;
-                margin: 0 auto;
-            }
-
-            .steps::before {
-                display: none;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-                max-width: 520px;
-                margin: 4rem auto 0;
-            }
-
-            .pricing-cards {
-                grid-template-columns: 1fr;
-                max-width: 440px;
-                margin: 4rem auto 0;
-            }
-
-            .pricing-card.featured {
-                transform: none;
-            }
-
-            .pricing-card.featured:hover {
-                transform: translateY(-4px);
-            }
+            .hero-container { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .hero-content { order: 2; }
+            .hero-visual { order: 1; height: 360px; }
+            .hero-buttons { justify-content: center; }
+            .hero-stats { justify-content: center; }
+            .hero-subtitle { margin: 0 auto 2.25rem; }
+            .carousel-card { width: 190px; height: 245px; }
+            .steps { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .pricing-cards { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
         }
 
-        /* Small tablet / large phone */
         @media (max-width: 768px) {
-            .how-it-works,
-            .benefits,
-            .templates,
-            .pricing {
-                padding: 5rem 1.5rem;
-            }
-
-            .cta-section {
-                padding: 5rem 1.5rem;
-            }
-
-            .faq-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .demo-section {
-                padding: 4rem 1.5rem;
-            }
-
-            .section-header {
-                margin-bottom: 3rem;
-            }
-
-            .cta-container {
-                padding: 3rem 2rem;
-                border-radius: 24px;
-            }
-
-            .benefit-card {
-                padding: 2rem;
-            }
-
-            .pricing-card {
-                padding: 2rem;
-            }
-
-            .demo-container {
-                border-radius: 24px;
-            }
-
-            .template-card {
-                width: 220px;
-            }
-
-            .template-preview {
-                height: 150px;
-            }
+            .nav-link { display: none; }
+            .hero { padding: 7rem 1.25rem 4rem; }
+            .how-it-works, .benefits, .templates, .pricing, .faq-section, .demo-section, .cta-section { padding: 4rem 1.25rem; }
+            .cta-container { padding: 2.5rem 1.5rem; }
+            .demo-container { padding: 1.5rem; }
+            .footer-container { flex-direction: column; text-align: center; }
+            .footer-links { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+            .footer-social { justify-content: center; }
+            .telegram-float span { display: none; }
+            .telegram-float a { padding: 0.875rem; }
+            .benefits-grid { grid-template-columns: 1fr; }
         }
 
-        /* Mobile */
-        @media (max-width: 640px) {
-            nav {
-                padding: 0.75rem 1rem;
-            }
-
-            .nav-link {
-                display: none;
-            }
-
-            .nav-cta .btn {
-                padding: 0.625rem 1.25rem;
-                font-size: 0.875rem;
-            }
-
-            .hero {
-                padding: 5.5rem 1rem 2rem;
-                min-height: auto;
-            }
-
-            .hero h1 {
-                font-size: 1.875rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.05rem;
-            }
-
-            .hero-badge {
-                font-size: 0.8rem;
-                padding: 0.375rem 0.75rem;
-            }
-
-            .hero-buttons .btn-large {
-                padding: 0.875rem 1.75rem;
-                font-size: 1rem;
-                width: 100%;
-                justify-content: center;
-            }
-
-            .hero-stats {
-                gap: 1.25rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .stat {
-                text-align: center;
-            }
-
-            .stat-value {
-                font-size: 1.5rem;
-            }
-
-            .stat-label {
-                font-size: 0.8rem;
-            }
-
-            .carousel-stack {
-                height: 280px;
-            }
-
-            .carousel-card {
-                width: 160px;
-                height: 210px;
-            }
-
-            .carousel-card:nth-child(1) {
-                transform: rotate(-10deg) translateX(-45px);
-            }
-
-            .carousel-card:nth-child(2) {
-                transform: rotate(0deg) translateY(-15px);
-            }
-
-            .carousel-card:nth-child(3) {
-                transform: rotate(10deg) translateX(45px);
-            }
-
-            .slide-title {
-                font-size: 1rem;
-            }
-
-            .slide-text {
-                font-size: 0.6rem;
-            }
-
-            .slide-content {
-                padding: 1rem;
-            }
-
-            .how-it-works,
-            .benefits,
-            .templates,
-            .pricing {
-                padding: 3.5rem 1rem;
-            }
-
-            .cta-section {
-                padding: 3.5rem 1rem;
-            }
-
-            .faq-section {
-                padding: 3rem 1rem;
-            }
-
-            .demo-section {
-                padding: 3rem 1rem;
-            }
-
-            .section-header {
-                margin-bottom: 2.5rem;
-            }
-
-            .section-subtitle {
-                font-size: 1rem;
-            }
-
-            .demo-container {
-                padding: 1.25rem;
-                border-radius: 20px;
-            }
-
-            .chat-avatar {
-                width: 32px;
-                height: 32px;
-                border-radius: 10px;
-            }
-
-            .chat-bubble {
-                max-width: 85%;
-                padding: 0.75rem 1rem;
-                font-size: 0.875rem;
-            }
-
-            .chat-message {
-                gap: 0.625rem;
-            }
-
-            .demo-slide {
-                width: 160px;
-                height: 200px;
-            }
-
-            .demo-slide-title {
-                font-size: 0.8rem;
-            }
-
-            .demo-slide-content {
-                padding: 1rem;
-            }
-
-            .step {
-                padding: 1.5rem;
-            }
-
-            .step-number {
-                width: 60px;
-                height: 60px;
-                font-size: 1.25rem;
-            }
-
-            .step-title {
-                font-size: 1.1rem;
-            }
-
-            .step-desc {
-                font-size: 0.9rem;
-            }
-
-            .benefit-card {
-                padding: 1.5rem;
-            }
-
-            .benefit-icon {
-                width: 48px;
-                height: 48px;
-                font-size: 1.25rem;
-                margin-bottom: 1rem;
-            }
-
-            .benefit-title {
-                font-size: 1.1rem;
-            }
-
-            .benefit-desc {
-                font-size: 0.9rem;
-            }
-
-            .template-card {
-                width: 200px;
-            }
-
-            .template-preview {
-                height: 140px;
-            }
-
-            .template-info {
-                padding: 1rem;
-            }
-
-            .template-name {
-                font-size: 0.9rem;
-            }
-
-            .template-desc {
-                font-size: 0.8rem;
-            }
-
-            .pricing-card {
-                padding: 1.75rem;
-            }
-
-            .price-value {
-                font-size: 2rem;
-            }
-
-            .pricing-features li {
-                font-size: 0.9rem;
-                padding: 0.625rem 0;
-            }
-
-            .cta-container {
-                padding: 2.5rem 1.5rem;
-                border-radius: 20px;
-            }
-
-            .cta-subtitle {
-                font-size: 1rem;
-            }
-
-            .cta-buttons .btn-large {
-                width: 100%;
-                justify-content: center;
-            }
-
-            .faq-question {
-                padding: 1rem 1.25rem;
-                font-size: 0.95rem;
-            }
-
-            .faq-answer {
-                padding: 0 1.25rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-
-            .footer-links {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 1rem;
-            }
-
-            .footer-links a {
-                font-size: 0.85rem;
-            }
-
-            .footer-social {
-                justify-content: center;
-            }
-
-            footer {
-                padding: 2.5rem 1rem;
-            }
-
-            .telegram-float {
-                bottom: 1rem;
-                right: 1rem;
-            }
-
-            .telegram-float span {
-                display: none;
-            }
-
-            .telegram-float a {
-                padding: 0.875rem;
-            }
-
-            .telegram-float svg {
-                width: 22px;
-                height: 22px;
-            }
-
-            .scroll-indicator {
-                display: none;
-            }
-        }
-
-        /* Small phones */
         @media (max-width: 380px) {
-            .hero h1 {
-                font-size: 1.625rem;
-            }
-
-            .hero-subtitle {
-                font-size: 0.95rem;
-            }
-
-            .nav-cta .btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .logo-text {
-                font-size: 1.25rem;
-            }
-
-            .carousel-stack {
-                height: 240px;
-            }
-
-            .carousel-card {
-                width: 130px;
-                height: 175px;
-            }
-
-            .carousel-card:nth-child(1) {
-                transform: rotate(-8deg) translateX(-35px);
-            }
-
-            .carousel-card:nth-child(3) {
-                transform: rotate(8deg) translateX(35px);
-            }
-
-            .slide-title {
-                font-size: 0.8rem;
-            }
-
-            .slide-number {
-                font-size: 0.55rem;
-            }
-
-            .slide-text {
-                display: none;
-            }
-
-            .hero-stats {
-                gap: 1rem;
-            }
-
-            .stat-value {
-                font-size: 1.25rem;
-            }
-
-            .stat-label {
-                font-size: 0.75rem;
-            }
-
-            .section-subtitle {
-                font-size: 0.9rem;
-            }
-
-            .demo-slide {
-                width: 140px;
-                height: 180px;
-            }
-
-            .template-card {
-                width: 180px;
-            }
-        }
-
-        /* Smooth scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0.5;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(10px); }
-        }
-
-        .scroll-indicator span {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .scroll-indicator svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 6rem 2rem;
-        }
-
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .faq-item {
-            background: #FFFFFF;
-            border: 1px solid rgba(26, 26, 46, 0.08);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-        }
-
-        .faq-item:hover {
-            border-color: rgba(10, 132, 255, 0.2);
-            box-shadow: 0 4px 20px rgba(10, 132, 255, 0.08);
-        }
-
-        .faq-item[open] {
-            border-color: rgba(10, 132, 255, 0.3);
-        }
-
-        .faq-question {
-            padding: 1.25rem 1.5rem;
-            font-weight: 600;
-            font-size: 1.05rem;
-            cursor: pointer;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-        }
-
-        .faq-question::-webkit-details-marker {
-            display: none;
-        }
-
-        .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--primary);
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-            margin-left: 1rem;
-        }
-
-        .faq-item[open] .faq-question::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            padding: 0 1.5rem 1.25rem;
-            color: rgba(26, 26, 46, 0.7);
-            line-height: 1.7;
-            font-size: 0.95rem;
+            .hero h1 { font-size: 1.75rem; }
+            .carousel-card { width: 130px; height: 170px; }
+            .hero-visual { height: 280px; }
+            .hero-stats { gap: 1.25rem; }
+            .stat-value { font-size: 1.35rem; }
         }
     </style>
 
@@ -1955,7 +1213,6 @@
       "applicationCategory": "DesignApplication",
       "operatingSystem": "Telegram",
       "image": "https://swipely-landing.vercel.app/og-image.png",
-      "screenshot": "https://swipely-landing.vercel.app/og-image.png",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
@@ -1963,22 +1220,8 @@
         "bestRating": "5"
       },
       "offers": [
-        {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "RUB",
-          "name": "Free — 3 карусели/мес",
-          "description": "3 карусели в месяц, все 15 шаблонов, голосовой ввод",
-          "availability": "https://schema.org/InStock"
-        },
-        {
-          "@type": "Offer",
-          "price": "990",
-          "priceCurrency": "RUB",
-          "name": "PRO — безлимит каруселей",
-          "description": "Безлимитные генерации, без водяного знака, скидка 20% на Photo Mode",
-          "availability": "https://schema.org/InStock"
-        }
+        { "@type": "Offer", "price": "0", "priceCurrency": "RUB", "name": "Free — 3 карусели/мес", "availability": "https://schema.org/InStock" },
+        { "@type": "Offer", "price": "990", "priceCurrency": "RUB", "name": "PRO — безлимит каруселей", "availability": "https://schema.org/InStock" }
       ]
     }
     </script>
@@ -1989,29 +1232,7 @@
       "name": "Swipely",
       "url": "https://swipely-landing.vercel.app/",
       "logo": "https://swipely-landing.vercel.app/logo.png",
-      "sameAs": [
-        "https://t.me/swipelybot",
-        "https://instagram.com/lvmn.ai"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer support",
-        "url": "https://t.me/lvmn_creator"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Главная",
-          "item": "https://swipely-landing.vercel.app/"
-        }
-      ]
+      "sameAs": ["https://t.me/swipelybot", "https://instagram.com/lvmn.ai"]
     }
     </script>
     <script type="application/ld+json">
@@ -2019,87 +1240,21 @@
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Swipely?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Swipely — это Telegram-бот с искусственным интеллектом, который превращает текст или голосовое сообщение в готовые дизайнерские карусели для соцсетей. Не нужны навыки дизайна — AI делает всё за вас."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Как создать карусель в Swipely?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Откройте бота @swipelybot в Telegram, отправьте текст или голосовое сообщение с вашей идеей, выберите количество слайдов и стиль дизайна — карусель будет готова через 30 секунд."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Сколько стоит Swipely?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Бесплатный тариф включает 3 карусели в месяц с доступом ко всем 15 шаблонам. PRO-подписка за 990₽/мес даёт безлимитные генерации и скидку на Photo Mode."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Какие шаблоны доступны?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "15 дизайн-шаблонов: Grid Multi, Notebook, Aurora, Terminal, Luxe, Editorial, Backspace, Star Highlight, Purple Accent, Quote Doodle, Speech Bubble, Receipt, Lime Checklist, App List и Paper Texture. От минимализма до ярких градиентов."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Можно ли редактировать карусель после генерации?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Да, после генерации вы можете открыть карусель в веб-редакторе Swipely, изменить тексты, шрифты и цвета, а затем скачать обновлённые слайды."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Нужно ли устанавливать приложение?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Нет, Swipely работает прямо в Telegram — просто откройте бота @swipelybot и начните. Никаких загрузок, регистраций или установок не требуется."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Для каких соцсетей подходят карусели?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Карусели Swipely идеально подходят для Instagram, Telegram-каналов, ВКонтакте и LinkedIn. Слайды генерируются в формате PNG с оптимальным разрешением для публикации."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Что такое Photo Mode?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Photo Mode — это режим генерации каруселей с вашим фото. AI создаёт уникальные изображения с вами в разных сценах для каждого слайда. Доступны мультяшный (Pixar/Disney) и реалистичный стили. Стоимость — от 149₽ за карусель."
-          }
-        }
+        { "@type": "Question", "name": "Что такое Swipely?", "acceptedAnswer": { "@type": "Answer", "text": "Swipely — это Telegram-бот с искусственным интеллектом, который превращает текст или голосовое сообщение в готовые дизайнерские карусели для соцсетей." } },
+        { "@type": "Question", "name": "Как создать карусель в Swipely?", "acceptedAnswer": { "@type": "Answer", "text": "Откройте бота @swipelybot в Telegram, отправьте текст или голосовое сообщение с вашей идеей, выберите количество слайдов и стиль дизайна — карусель будет готова через 30 секунд." } },
+        { "@type": "Question", "name": "Сколько стоит Swipely?", "acceptedAnswer": { "@type": "Answer", "text": "Бесплатный тариф включает 3 карусели в месяц. PRO-подписка за 990₽/мес даёт безлимитные генерации." } }
       ]
     }
     </script>
 </head>
 <body>
-    <!-- Animated background -->
-    <div class="gradient-bg"></div>
-
-    <!-- Floating particles -->
-    <div class="particles" id="particles"></div>
 
     <!-- Navigation -->
     <header>
     <nav id="nav" aria-label="Основная навигация">
         <a href="#" class="logo" aria-label="Swipely — на главную">
             <div class="logo-icon">
-                <img src="logo.png" alt="Логотип Swipely" width="40" height="40">
+                <img src="logo.png" alt="Логотип Swipely" width="34" height="34">
             </div>
             <span class="logo-text">Swipely</span>
         </a>
@@ -2122,48 +1277,44 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-badge">AI-генератор каруселей</div>
-                <h1>Превращаю мысли в <span>дизайнерские карусели</span> за секунды</h1>
+                <h1>Превращаю мысли в<br><span class="accent-blue">дизайнерские карусели</span><br>за секунды</h1>
                 <p class="hero-subtitle">
                     Отправь текст или голосовое в Telegram — получи готовую карусель для соцсетей. Без Canva, дизайнеров и головной боли.
                 </p>
                 <div class="hero-buttons">
                     <a href="https://t.me/swipelybot" target="_blank" rel="noopener" class="btn btn-primary btn-large">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                         </svg>
                         Открыть в Telegram
                     </a>
-                    <a href="#demo" class="btn btn-secondary btn-large">
-                        Смотреть демо
-                    </a>
+                    <a href="#demo" class="btn btn-secondary btn-large">Смотреть демо</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <div class="stat-value">10K+</div>
-                        <div class="stat-label">каруселей создано</div>
+                        <span class="stat-value">10K+</span>
+                        <span class="stat-label">каруселей создано</span>
                     </div>
                     <div class="stat">
-                        <div class="stat-value">15</div>
-                        <div class="stat-label">стилей дизайна</div>
+                        <span class="stat-value">15</span>
+                        <span class="stat-label">стилей дизайна</span>
                     </div>
                     <div class="stat">
-                        <div class="stat-value">30сек</div>
-                        <div class="stat-label">среднее время</div>
+                        <span class="stat-value">30с</span>
+                        <span class="stat-label">среднее время</span>
                     </div>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="carousel-stack">
                     <div class="carousel-card">
-                        <div class="slide-grid-multi">
-                            <div class="slide-deco">
-                                <div class="slide-deco-line"></div>
-                                <div class="slide-deco-line"></div>
-                                <div class="slide-deco-line"></div>
+                        <div class="slide-dark">
+                            <div class="slide-deco-dots">
+                                <span></span><span></span><span></span>
                             </div>
-                            <div class="slide-content">
-                                <div class="slide-number">01 / 05</div>
-                                <div class="slide-title"><span class="highlight-pink">5 привычек</span> успешных людей</div>
+                            <div class="slide-inner">
+                                <div class="slide-num">01 / 05</div>
+                                <div class="slide-title"><span class="hl-pink">5 привычек</span> успешных людей</div>
                                 <div class="slide-text">Свайпай, чтобы узнать секреты продуктивности →</div>
                             </div>
                             <div class="slide-footer">
@@ -2173,15 +1324,13 @@
                         </div>
                     </div>
                     <div class="carousel-card">
-                        <div class="slide-grid-multi">
-                            <div class="slide-deco">
-                                <div class="slide-deco-line"></div>
-                                <div class="slide-deco-line"></div>
-                                <div class="slide-deco-line"></div>
+                        <div class="slide-dark">
+                            <div class="slide-deco-dots">
+                                <span></span><span></span><span></span>
                             </div>
-                            <div class="slide-content">
-                                <div class="slide-number">02 / 05</div>
-                                <div class="slide-title">Просыпайся <span class="highlight">в 5:00</span></div>
+                            <div class="slide-inner">
+                                <div class="slide-num">02 / 05</div>
+                                <div class="slide-title">Просыпайся <span class="hl">в 5:00</span></div>
                                 <div class="slide-text">Утренние часы — самое продуктивное время для глубокой работы</div>
                             </div>
                             <div class="slide-footer">
@@ -2191,15 +1340,13 @@
                         </div>
                     </div>
                     <div class="carousel-card">
-                        <div class="slide-grid-multi">
-                            <div class="slide-deco">
-                                <div class="slide-deco-line"></div>
-                                <div class="slide-deco-line"></div>
-                                <div class="slide-deco-line"></div>
+                        <div class="slide-dark">
+                            <div class="slide-deco-dots">
+                                <span></span><span></span><span></span>
                             </div>
-                            <div class="slide-content">
-                                <div class="slide-number">03 / 05</div>
-                                <div class="slide-title">Читай <span class="highlight">30 минут</span> в день</div>
+                            <div class="slide-inner">
+                                <div class="slide-num">03 / 05</div>
+                                <div class="slide-title">Читай <span class="hl">30 минут</span> в день</div>
                                 <div class="slide-text">Книги расширяют кругозор и дают новые идеи каждый день</div>
                             </div>
                             <div class="slide-footer">
@@ -2213,13 +1360,13 @@
         </div>
         <div class="scroll-indicator">
             <span>Листай вниз</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
                 <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
         </div>
     </section>
 
-    <!-- How It Works Section -->
+    <!-- How It Works -->
     <section class="how-it-works" id="how" aria-label="Как это работает">
         <div class="section-container">
             <div class="section-header">
@@ -2231,17 +1378,17 @@
             </div>
             <div class="steps">
                 <div class="step">
-                    <div class="step-number">1</div>
+                    <span class="step-number">01</span>
                     <h3 class="step-title">Отправь идею</h3>
                     <p class="step-desc">Напиши текст или надикуй голосовое сообщение. AI поймёт твой стиль и извлечёт ключевые смыслы.</p>
                 </div>
                 <div class="step">
-                    <div class="step-number">2</div>
+                    <span class="step-number">02</span>
                     <h3 class="step-title">Выбери стиль</h3>
                     <p class="step-desc">15 дизайн-шаблонов: от минималистичного Terminal до яркого Lime Checklist. Найди свой вайб.</p>
                 </div>
                 <div class="step">
-                    <div class="step-number">3</div>
+                    <span class="step-number">03</span>
                     <h3 class="step-title">Скачай и публикуй</h3>
                     <p class="step-desc">Готовая карусель прилетит в чат. Скачай, опубликуй и собирай реакции.</p>
                 </div>
@@ -2258,7 +1405,7 @@
             </div>
             <div class="demo-chat">
                 <div class="chat-message user">
-                    <div class="chat-avatar">
+                    <div class="chat-avatar user-av">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
                         </svg>
@@ -2266,14 +1413,14 @@
                     <div class="chat-bubble">Напиши карусель про 5 привычек продуктивных людей, которые помогут работать эффективнее</div>
                 </div>
                 <div class="chat-message">
-                    <div class="chat-avatar" style="padding: 4px;">
-                        <img src="logo.png" alt="Аватар бота Swipely" width="32" height="32" style="width: 100%; height: 100%; border-radius: 8px;">
+                    <div class="chat-avatar bot-av">
+                        <img src="logo.png" alt="Swipely" width="36" height="36" style="border-radius: 8px;">
                     </div>
                     <div class="chat-bubble">Принял! Выбери количество слайдов и стиль дизайна. Генерирую контент...</div>
                 </div>
                 <div class="chat-message">
-                    <div class="chat-avatar" style="padding: 4px;">
-                        <img src="logo.png" alt="Аватар бота Swipely" width="32" height="32" style="width: 100%; height: 100%; border-radius: 8px;">
+                    <div class="chat-avatar bot-av">
+                        <img src="logo.png" alt="Swipely" width="36" height="36" style="border-radius: 8px;">
                     </div>
                     <div class="chat-bubble">Твоя карусель готова! Скачай и публикуй:</div>
                 </div>
@@ -2283,12 +1430,10 @@
                     <div class="demo-slide-deco"><span></span><span></span><span></span></div>
                     <div class="demo-slide-content">
                         <div class="demo-slide-num">01 / 05</div>
-                        <div class="demo-slide-title"><span class="hl hl-pink">5 привычек</span> продуктивных людей</div>
+                        <div class="demo-slide-title"><span class="hl-pink">5 привычек</span> продуктивных людей</div>
                         <div class="demo-slide-text">Свайпай →</div>
                     </div>
-                    <div class="demo-slide-footer">
-                        <div class="demo-slide-avatar">S</div>
-                    </div>
+                    <div class="demo-slide-footer"><div class="demo-slide-avatar">S</div></div>
                 </div>
                 <div class="demo-slide">
                     <div class="demo-slide-deco"><span></span><span></span><span></span></div>
@@ -2297,9 +1442,7 @@
                         <div class="demo-slide-title">Утренняя <span class="hl">рутина</span></div>
                         <div class="demo-slide-text">Начинай день с 30 минут глубокой работы без отвлечений</div>
                     </div>
-                    <div class="demo-slide-footer">
-                        <div class="demo-slide-avatar">S</div>
-                    </div>
+                    <div class="demo-slide-footer"><div class="demo-slide-avatar">S</div></div>
                 </div>
                 <div class="demo-slide">
                     <div class="demo-slide-deco"><span></span><span></span><span></span></div>
@@ -2308,9 +1451,7 @@
                         <div class="demo-slide-title">Техника <span class="hl">Pomodoro</span></div>
                         <div class="demo-slide-text">25 минут фокуса, 5 минут отдыха. Повторяй циклами.</div>
                     </div>
-                    <div class="demo-slide-footer">
-                        <div class="demo-slide-avatar">S</div>
-                    </div>
+                    <div class="demo-slide-footer"><div class="demo-slide-avatar">S</div></div>
                 </div>
                 <div class="demo-slide">
                     <div class="demo-slide-deco"><span></span><span></span><span></span></div>
@@ -2319,9 +1460,7 @@
                         <div class="demo-slide-title">Планируй <span class="hl">вечером</span></div>
                         <div class="demo-slide-text">Составь план на завтра перед сном — утром сразу в бой</div>
                     </div>
-                    <div class="demo-slide-footer">
-                        <div class="demo-slide-avatar">S</div>
-                    </div>
+                    <div class="demo-slide-footer"><div class="demo-slide-avatar">S</div></div>
                 </div>
             </div>
         </div>
@@ -2333,14 +1472,12 @@
             <div class="section-header">
                 <div class="section-tag">Почему Swipely</div>
                 <h2 class="section-title">Забудь про часы в Canva</h2>
-                <p class="section-subtitle">
-                    Пока другие мучаются с дизайном, ты уже публикуешь контент
-                </p>
+                <p class="section-subtitle">Пока другие мучаются с дизайном, ты уже публикуешь контент</p>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                         </svg>
                     </div>
@@ -2349,10 +1486,8 @@
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <circle cx="12" cy="12" r="6"/>
-                            <circle cx="12" cy="12" r="2"/>
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
                         </svg>
                     </div>
                     <h3 class="benefit-title">Твой стиль, не шаблон</h3>
@@ -2360,11 +1495,10 @@
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
                             <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                            <line x1="12" y1="19" x2="12" y2="23"/>
-                            <line x1="8" y1="23" x2="16" y2="23"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
                         </svg>
                     </div>
                     <h3 class="benefit-title">Голос → Карусель</h3>
@@ -2372,7 +1506,7 @@
                 </div>
                 <div class="benefit-card">
                     <div class="benefit-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
                             <circle cx="8.5" cy="8.5" r="1.5"/>
                             <polyline points="21 15 16 10 5 21"/>
@@ -2391,198 +1525,135 @@
             <div class="section-header">
                 <div class="section-tag">15 стилей дизайна</div>
                 <h2 class="section-title">Шаблоны на любой вкус</h2>
-                <p class="section-subtitle">
-                    От тёмного минимализма до ярких градиентов. Найди свой стиль.
-                </p>
+                <p class="section-subtitle">От тёмного минимализма до ярких градиентов. Найди свой стиль.</p>
             </div>
             <div class="templates-carousel">
-                <!-- Grid Multi -->
                 <div class="template-card">
                     <div class="template-preview grid_multi">
                         <div class="template-accent"></div>
                         <div class="template-accent template-accent-2"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Grid Multi</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Grid Multi</div>
                         <div class="template-desc">Сетка, цветные акценты</div>
                     </div>
                 </div>
-                <!-- Notebook -->
                 <div class="template-card">
-                    <div class="template-preview notebook">
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Notebook</div>
-                        </div>
-                    </div>
+                    <div class="template-preview notebook"></div>
                     <div class="template-info">
                         <div class="template-name">Notebook Sketch</div>
                         <div class="template-desc">Крафтовый, личный</div>
                     </div>
                 </div>
-                <!-- Aurora -->
                 <div class="template-card">
                     <div class="template-preview aurora">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Aurora</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Aurora</div>
                         <div class="template-desc">Мягкие градиенты</div>
                     </div>
                 </div>
-                <!-- Terminal -->
                 <div class="template-card">
                     <div class="template-preview terminal">
                         <div class="template-accent">> run swipely_</div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title" style="color: #33FF00;">Terminal</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Terminal</div>
                         <div class="template-desc">Для IT-аудитории</div>
                     </div>
                 </div>
-                <!-- Luxe -->
                 <div class="template-card">
                     <div class="template-preview luxe">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title" style="color: #D4AF37;">Luxe</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Luxe</div>
                         <div class="template-desc">Премиум, золото</div>
                     </div>
                 </div>
-                <!-- Editorial -->
                 <div class="template-card">
-                    <div class="template-preview editorial">
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Editorial</div>
-                        </div>
-                    </div>
+                    <div class="template-preview editorial"></div>
                     <div class="template-info">
                         <div class="template-name">Editorial</div>
                         <div class="template-desc">Журнальный стиль</div>
                     </div>
                 </div>
-                <!-- Backspace -->
                 <div class="template-card">
                     <div class="template-preview backspace">
-                        <div class="template-preview-content">
-                            <div class="template-preview-title" style="font-weight: 900; font-size: 1.3rem;">Backspace</div>
-                        </div>
+                        <div class="template-accent">Bs</div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Backspace</div>
                         <div class="template-desc">Деловой, минимализм</div>
                     </div>
                 </div>
-                <!-- Star Highlight -->
                 <div class="template-card">
                     <div class="template-preview star_highlight">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Star Highlight</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Star Highlight</div>
                         <div class="template-desc">Жёлтые акценты</div>
                     </div>
                 </div>
-                <!-- Purple Accent -->
                 <div class="template-card">
                     <div class="template-preview purple_accent">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Purple Accent</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Purple Accent</div>
                         <div class="template-desc">Лавандовый, брендинг</div>
                     </div>
                 </div>
-                <!-- Quote Doodle -->
                 <div class="template-card">
                     <div class="template-preview quote_doodle">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Quote Doodle</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Quote Doodle</div>
                         <div class="template-desc">Для цитат и мудрости</div>
                     </div>
                 </div>
-                <!-- Speech Bubble -->
                 <div class="template-card">
                     <div class="template-preview speech_bubble">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Speech Bubble</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Speech Bubble</div>
                         <div class="template-desc">Цитаты с автором</div>
                     </div>
                 </div>
-                <!-- Receipt -->
                 <div class="template-card">
                     <div class="template-preview receipt">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Receipt</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Receipt</div>
                         <div class="template-desc">Стиль чека, манифесты</div>
                     </div>
                 </div>
-                <!-- Lime Checklist -->
                 <div class="template-card">
                     <div class="template-preview lime_checklist">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Lime Checklist</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Lime Checklist</div>
                         <div class="template-desc">Яркий чеклист</div>
                     </div>
                 </div>
-                <!-- App List -->
                 <div class="template-card">
                     <div class="template-preview app_list">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">App List</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">App List</div>
                         <div class="template-desc">Стиль приложения</div>
                     </div>
                 </div>
-                <!-- Paper Image -->
                 <div class="template-card">
                     <div class="template-preview paper_image">
                         <div class="template-accent"></div>
-                        <div class="template-preview-content">
-                            <div class="template-preview-title">Paper Texture</div>
-                        </div>
                     </div>
                     <div class="template-info">
                         <div class="template-name">Paper Texture</div>
@@ -2599,18 +1670,14 @@
             <div class="section-header">
                 <div class="section-tag">Цены</div>
                 <h2 class="section-title">Начни бесплатно</h2>
-                <p class="section-subtitle">
-                    3 карусели каждый месяц — без оплаты. Для большего есть PRO.
-                </p>
+                <p class="section-subtitle">3 карусели каждый месяц — без оплаты. Для большего есть PRO.</p>
             </div>
             <div class="pricing-cards">
                 <div class="pricing-card">
                     <div class="pricing-name">Free</div>
                     <div class="pricing-desc">Для старта</div>
-                    <div class="pricing-price">
-                        <span class="price-value">0₽</span>
-                        <span class="price-period">/ навсегда</span>
-                    </div>
+                    <span class="price-value">0₽</span>
+                    <span class="price-period">/ навсегда</span>
                     <ul class="pricing-features">
                         <li>3 карусели в месяц</li>
                         <li>Все 15 стилей дизайна</li>
@@ -2624,10 +1691,8 @@
                 <div class="pricing-card featured">
                     <div class="pricing-name">PRO</div>
                     <div class="pricing-desc">Для регулярного контента</div>
-                    <div class="pricing-price">
-                        <span class="price-value">990₽</span>
-                        <span class="price-period">/ месяц</span>
-                    </div>
+                    <span class="price-value">990₽</span>
+                    <span class="price-period">/ месяц</span>
                     <ul class="pricing-features">
                         <li>Безлимит каруселей</li>
                         <li>Без водяного знака</li>
@@ -2641,10 +1706,8 @@
                 <div class="pricing-card">
                     <div class="pricing-name">Photo Mode</div>
                     <div class="pricing-desc">Карусели с твоим лицом</div>
-                    <div class="pricing-price">
-                        <span class="price-value">от 149₽</span>
-                        <span class="price-period">/ карусель</span>
-                    </div>
+                    <span class="price-value">от 149₽</span>
+                    <span class="price-period">/ карусель</span>
                     <ul class="pricing-features">
                         <li>AI-генерация с твоим фото</li>
                         <li>Мультяшный или реалистичный</li>
@@ -2706,6 +1769,7 @@
     <!-- CTA Section -->
     <section class="cta-section" aria-label="Призыв к действию">
         <div class="cta-container">
+            <div class="cta-glow"></div>
             <div class="cta-content">
                 <h2 class="cta-title">Готов создать первую карусель?</h2>
                 <p class="cta-subtitle">
@@ -2713,7 +1777,7 @@
                 </p>
                 <div class="cta-buttons">
                     <a href="https://t.me/swipelybot" target="_blank" rel="noopener" class="btn btn-primary btn-large">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                         </svg>
                         Открыть Swipely в Telegram
@@ -2729,10 +1793,10 @@
     <footer role="contentinfo">
         <div class="footer-container">
             <div class="footer-brand">
-                <div class="logo-icon" style="width: 32px; height: 32px;">
-                    <img src="logo.png" alt="Логотип Swipely" width="32" height="32">
+                <div class="logo-icon" style="width: 30px; height: 30px;">
+                    <img src="logo.png" alt="Логотип Swipely" width="30" height="30">
                 </div>
-                <span style="font-weight: 600;">Swipely</span>
+                <span>Swipely</span>
             </div>
             <div class="footer-links" role="navigation" aria-label="Юридическая информация">
                 <a href="#">Политика конфиденциальности</a>
@@ -2741,12 +1805,12 @@
             </div>
             <div class="footer-social" role="list" aria-label="Социальные сети">
                 <a href="https://t.me/swipelybot" target="_blank" rel="noopener noreferrer" title="Swipely в Telegram" role="listitem">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
                     </svg>
                 </a>
                 <a href="https://instagram.com/lvmn.ai" target="_blank" rel="noopener noreferrer" title="Swipely в Instagram" role="listitem">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <rect x="2" y="2" width="20" height="20" rx="5"/>
                         <circle cx="12" cy="12" r="4"/>
                         <circle cx="18" cy="6" r="1.5" fill="currentColor"/>
@@ -2767,50 +1831,22 @@
     </div>
 
     <script>
-        // Create floating particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 20; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-            if (Math.random() > 0.5) {
-                particle.style.background = '#3D9FFF';
-            }
-            particlesContainer.appendChild(particle);
-        }
-
-        // Navbar scroll effect
+        // Navbar scroll
         const nav = document.getElementById('nav');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
+            nav.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll for anchors
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // Scroll reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -2818,12 +1854,12 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.step, .benefit-card, .template-card, .pricing-card').forEach(el => {
             el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            el.style.transform = 'translateY(24px)';
+            el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
             observer.observe(el);
         });
     </script>
